@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import Genre from '../components/Genre'
 import Movies from '../components/Movies'
 import SearchBox from '../components/SearchBox'
-import BackgrounBase from '../components/BackgrounBase'
+
 
 import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -35,6 +35,7 @@ export default connect()(HomePage)
 
 const styles = StyleSheet.create({
     backgroundBase : {
+        position:'relative',
         backgroundColor:'black',
         height: '100%',
         borderBottomRightRadius:20,
