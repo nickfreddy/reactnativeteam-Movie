@@ -22,6 +22,7 @@ const HomePage = (props) => {
                 </View>
                 <Movies navigateTo={()=> props.navigation.navigate('MovieDetails')}/>
             </View>
+            <View></View>
         </View>
     )
 }
