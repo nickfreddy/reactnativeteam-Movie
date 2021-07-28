@@ -4,7 +4,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 const Movies = (props) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => props.navigateTo()}>
             <View style={styles.movieContainer}>
                 <View style={styles.movieBox}>
                     <View style={styles.contentContainer}>
@@ -31,7 +31,7 @@ const Movies = (props) => {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
