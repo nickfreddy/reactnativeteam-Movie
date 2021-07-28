@@ -21,6 +21,7 @@ const HomePage = () => {
                 </View>
                 <Movies/>
             </View>
+            <View></View>
         </View>
     )
 }
