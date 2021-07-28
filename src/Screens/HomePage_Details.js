@@ -6,7 +6,6 @@ const HomePage_Details = () => {
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
             <Text>HomePage_Details</Text>
         </View>
-        // test
     )
 }
 
