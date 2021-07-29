@@ -6,7 +6,7 @@ import HeaderReview from '../components/HeaderReview';
 
 const AllReviewPage = () => {
   return (
-    <View>
+    <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderReview title="AllReview" />
       <AllReview />
       <View
