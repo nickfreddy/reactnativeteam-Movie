@@ -1,9 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import HeaderReview from './HeaderReview';
 
-const UserReview = () => {
+const UserReview = props => {
   return (
     <TouchableWithoutFeedback>
       <View

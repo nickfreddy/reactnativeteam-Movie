@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import {Rating, AirbnbRating} from 'react-native-ratings';
 
 const EditReview = () => {
   const [title, setTitle] = useState();
@@ -40,7 +40,7 @@ const EditReview = () => {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
-        backgroundColor: 'wheat',
+        backgroundColor: '#F4EEE8',
         borderWidth: 1,
         borderRadius: 10,
         width: '85%',
@@ -56,15 +56,18 @@ const EditReview = () => {
           How do you think about this movie?
         </Text>
         <View style={{flexDirection: 'row'}}>
-          <AntDesign name="star" size={23} color="gold" />
-          <AntDesign name="star" size={23} color="gold" />
-          <AntDesign name="star" size={23} color="gold" />
-          <AntDesign name="star" size={23} color="gold" />
-          <AntDesign name="star" size={23} color="gold" />
+          <View>
+            <Rating
+              type="custom"
+              ratingCount={5}
+              imageSize={23}
+              showRating
+              tintColor="#F4EEE8"
+              ratingTextColor="black"
+            />
+          </View>
         </View>
-        <Text style={{margin: 10, fontWeight: 'bold', fontSize: 15}}>
-          Your rating:5
-        </Text>
+
         <TextInput
           style={{borderWidth: 1, borderRadius: 10, width: 300, margin: 10}}
           placeholder="Title"
