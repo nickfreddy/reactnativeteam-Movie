@@ -1,14 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { useDispatch } from 'react-redux'
 
-const HomePage_Details = () => {
+const SplashScreen = () => {
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Text>HomePage_Details</Text>
+            <Text>SplashScreen</Text>
         </View>
     )
 }
 
-export default HomePage_Details
+export default SplashScreen
 
 const styles = StyleSheet.create({})
