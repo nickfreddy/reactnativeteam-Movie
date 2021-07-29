@@ -7,7 +7,7 @@ const HeaderReview = props => {
     <View
       style={{
         flexDirection: 'row',
-        backgroundColor: 'grey',
+        backgroundColor: '#325288',
         height: 62,
         alignItems: 'center',
       }}>
