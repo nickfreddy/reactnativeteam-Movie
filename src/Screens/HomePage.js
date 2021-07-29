@@ -35,8 +35,9 @@ const HomePage = (props) => {
         
     }
     useEffect(() => {
-        // dispatch({type: 'GET_DATA'})s
-    },)
+    // dispatch({type: 'GET_DATA'})s
+
+    },[])
 
     return (
 
@@ -49,10 +50,7 @@ const HomePage = (props) => {
                 </View>
                 <FlatList
                 data={movies_redux}
-                initialNumToRender={20}
                 keyExtractor={(elem, i) => i}
-                maxToRenderPerBatch={5}
-                updateCellsBatchingPeriod={5}
                 renderItem={renderItem}/>
             </View>
         </View>
