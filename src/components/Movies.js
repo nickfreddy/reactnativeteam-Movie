@@ -12,8 +12,9 @@ const Movies = (props) => {
                 </View>
                 <Text style={{color:'black'}}>{props.title}</Text>
                 <Text>{props.overview}</Text>
+
                 <View style={styles.footerContent}>
-                    <TouchableOpacity style={{flexDirection:'row'}}>
+                    <TouchableOpacity style={{flexDirection:'row'}} onPress={() => props.modalShow()} >
                         <MaterialCommunityIcon name='message-outline' size={20}/>
                         <Text>{props.voteCount}</Text>
                     </TouchableOpacity>
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
         flexDirection:'row', 
         justifyContent:'space-between',
         borderTopWidth: 1,
+        paddingTop:5
     }
 
 })

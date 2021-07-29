@@ -20,10 +20,10 @@ const MainNavigator = () => {
     const dispatch = useDispatch()
     const [navState, setNavState] = useState(false)
 
-    useEffect(() => {
-        dispatch({type: 'GET_DATA'})
+    useEffect( async() => {
+        await dispatch({type: 'GET_DATA'})
         setNavState(true)
-    },)
+    },[])
 
     if (navState) {
         return (

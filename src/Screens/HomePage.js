@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -17,10 +17,21 @@ import SearchBox from '../components/SearchBox';
 
 import {connect, useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
+import ModalView from '../components/ModalView';
 
 const HomePage = props => {
   const dispatch = useDispatch();
+  const modal_redux = useSelector(state => state.modal.modalState)
   const headline_redux = useSelector(state => state.genre.headline);
+  const movies_redux = useSelector(state => state.movie.movieData.slice(0,6))
+
+  const openModal = () => {
+    dispatch({type: "OPEN_MODAL"})
+  }
+
+  const closeModal = () => {
+    dispatch({type: 'CLOSE_MODAL'})
+  }
 
   const renderItem = ({item, index}) => {
     if (index !== 5) {
@@ -30,6 +41,7 @@ const HomePage = props => {
           overview={item.overview}
           voteCount={item.vote_count}
           posterPath={item.poster_path}
+          modalShow={openModal}
         />
       );
     } else {
@@ -48,17 +60,20 @@ const HomePage = props => {
   return (
     <View style={{backgroundColor: 'white'}}>
       <View style={styles.backgroundBase}>
+        <ModalView 
+        modalState={modal_redux}
+        onBackHandler={closeModal}
+        onSubmitModal={closeModal}
+        />
         <SearchBox />
         <Genre />
         <View style={{padding: 10, marginHorizontal: 10}}>
           <Text style={styles.headerText}>Hot {headline_redux} Movies</Text>
         </View>
         <FlatList
-          initialNumToRender={20}
-          keyExtractor={(elem, i) => i}
-          maxToRenderPerBatch={5}
-          updateCellsBatchingPeriod={5}
-          renderItem={renderItem}
+            data={movies_redux}
+            keyExtractor={(elem, i) => i}
+            renderItem={renderItem}
         />
       </View>
     </View>
