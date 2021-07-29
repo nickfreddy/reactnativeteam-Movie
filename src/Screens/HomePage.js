@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import Genre from '../components/Genre'
 import Movies from '../components/Movies'
 import SearchBox from '../components/SearchBox'
 
+
 import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
 
-const HomePage = () => {
+const HomePage = (props) => {
     const headline_redux = useSelector(state => state.genre.headline)
 
     return (
@@ -19,8 +20,9 @@ const HomePage = () => {
                 <View style={{padding:10, marginHorizontal:10}}>
                     <Text style={styles.headerText}>Hot {headline_redux} Movies</Text>
                 </View>
-                <Movies/>
+                <Movies navigateTo={()=> props.navigation.navigate('MovieDetails')}/>
             </View>
+            <View></View>
         </View>
     )
 }
@@ -33,6 +35,7 @@ export default connect()(HomePage)
 
 const styles = StyleSheet.create({
     backgroundBase : {
+        position:'relative',
         backgroundColor:'black',
         height: '100%',
         borderBottomRightRadius:20,
