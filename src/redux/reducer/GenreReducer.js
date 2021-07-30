@@ -2,7 +2,7 @@ const genreState = {
     action:'Action',
     romance:'Romance',
     thriller:'Thriller',
-    comedy:'comedy',
+    comedy:'Comedy',
     headline:'',
 }
 
