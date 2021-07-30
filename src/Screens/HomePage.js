@@ -88,7 +88,7 @@ export default connect()(HomePage);
 
 const styles = StyleSheet.create({
   backgroundBase: {
-    backgroundColor: 'black',
+    backgroundColor: '#114E60',
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
     paddingVertical: 10,
