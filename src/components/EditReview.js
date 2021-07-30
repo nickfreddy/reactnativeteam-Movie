@@ -41,7 +41,7 @@ const EditReview = () => {
         alignItems: 'center',
         marginTop: 30,
         backgroundColor: '#F4EEE8',
-        borderWidth: 1,
+        borderWidth: 4,
         borderRadius: 10,
         width: '85%',
         marginLeft: 30,

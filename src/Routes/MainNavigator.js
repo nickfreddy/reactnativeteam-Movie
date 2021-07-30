@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import UserReviewPage from '../Screens/UserReviewPage';
-import ProfilePage from '../Screens/ProfilePage';
+import AllRevPage from '../Screens/AllRevPage';
 import HomeStack from './HomeStack';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import UserStack from './UserStack';
 
 const Tab = createBottomTabNavigator();
 
 const IconRoute = {
-  UserReview: ['message', 'message-outline'],
+  AllReview: ['message', 'message-outline'],
   Home: ['home', 'home-outline'],
-  Profile: ['account-circle', 'account-circle-outline'],
+  UserReview: ['account-circle', 'account-circle-outline'],
 };
 
 const MainNavigator = () => {
@@ -28,9 +28,9 @@ const MainNavigator = () => {
           return <MaterialCommunityIcon name={icon} color={color} size={20} />;
         },
       })}>
-      <Tab.Screen name="UserReview" component={UserReviewPage} />
+      <Tab.Screen name="AllReview" component={AllRevPage} />
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Profile" component={ProfilePage} />
+      <Tab.Screen name="UserReview" component={UserStack} />
     </Tab.Navigator>
   );
 };
