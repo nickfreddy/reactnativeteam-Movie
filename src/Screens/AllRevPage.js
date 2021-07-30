@@ -14,8 +14,8 @@ const AllReviewPage = () => {
           position: 'absolute',
           width: 50,
           height: 50,
-          left: 310,
-          top: 510,
+          left: 330,
+          top: 540,
         }}>
         <AntDesign name="pluscircle" size={50} color="gold" />
       </View>
