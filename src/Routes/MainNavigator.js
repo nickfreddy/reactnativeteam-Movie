@@ -26,7 +26,7 @@ const MainNavigator = () => {
             ? (icon = IconRoute[route.name][0])
             : (icon = IconRoute[route.name][1]);
           return <MaterialCommunityIcon name={icon} color={color} size={20} />;
-        },
+        }, 
       })}>
       <Tab.Screen name="AllReview" component={AllRevPage} />
       <Tab.Screen name="Home" component={HomeStack} />

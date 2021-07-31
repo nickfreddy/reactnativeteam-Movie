@@ -46,19 +46,7 @@ const Genre = (props) => {
         </View>
     )
 }
-// const mapStateToProps = (state) => ({
-//     action: state.genre.action,
-//     romance: state.genre.romance,
-//     thriller: state.genre.thriller,
-//     comedy: state.genre.comedy
-// })
 
-// const mapDispatchToProps = (dispatch) => ({
-//     actionClicked: () => dispatch({type: 'ACTION'}),
-//     romanceClicked: () => dispatch({type: 'ROMANCE'}),
-//     thrillerClicked: () => dispatch({type: 'THRILLER'}),
-//     comedyClicked: () => dispatch({type: 'COMEDY'})
-// })
 
 export default Genre
 

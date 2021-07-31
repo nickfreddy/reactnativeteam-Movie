@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import MainNavigator from './MainNavigator'
 import SplashScreen from 'react-native-splash-screen'
 import {useDispatch} from 'react-redux'
+import LoginStack from './LoginStack'
 
 const Stack = createStackNavigator()
 
@@ -19,7 +20,8 @@ const AppStack = () => {
 
     return (
         <Stack.Navigator headerMode='none'>
-            <Stack.Screen name="Main Nav" component={MainNavigator} />
+            <Stack.Screen name="LoginStack" component={LoginStack} />
+            <Stack.Screen name="MainNavigator" component={MainNavigator} />
         </Stack.Navigator>
     )
 }
