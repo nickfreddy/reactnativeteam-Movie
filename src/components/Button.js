@@ -13,7 +13,8 @@ const Button = props => {
           justifyContent: 'center',
           height: 45,
           backgroundColor: 'white',
-        }}>
+        }}
+        onPress={()=> props.onPress()}>
         <Text style={{color: '#325288', fontWeight: 'bold', fontSize: 16}}>
           {props.title}
         </Text>

@@ -6,7 +6,7 @@ import PassInput from '../components/PassInput';
 import ProfilePic from '../components/ProfilePic';
 import Button from '../components/Button';
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <View

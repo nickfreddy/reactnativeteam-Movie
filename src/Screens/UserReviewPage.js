@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import UserReview from '../components/UserReview';
 import HeaderReview from '../components/HeaderReview';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -11,23 +11,29 @@ const UserReviewPage = () => {
     <View style={{backgroundColor: '#114E60', flex: 1}}>
       <View
         style={{
+          width: Dimensions.get('screen').width,  
           flexDirection: 'row',
-          backgroundColor: '#325288',
-          height: 62,
+          backgroundColor: '#325288', 
           alignItems: 'center',
-          marginLeft: 5,
+          justifyContent:'space-between',
+          paddingVertical:10,
+          paddingHorizontal:10
         }}>
-        <AntDesign name="left" size={23} color="white" />
-        <Text style={{fontSize: 25, color: 'white', marginLeft: 10}}>
-          User Review
-        </Text>
-        <View style={{position: 'absolute', left: 360}}>
-          <AntDesign
-            name="user"
-            size={35}
-            color="white"
-            onPress={() => navigation.navigate('EditProfile')}
-          />
+          <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+            <AntDesign name="left" size={23} color="white" />
+            <Text style={{fontSize: 25, color: 'white', marginLeft: 10}}>
+              User Review
+            </Text>
+          </View>
+          <View style={{left: 0}}>
+              <TouchableOpacity>
+              <AntDesign
+                  name="user"
+                  size={35}
+                  color="white"
+                  onPress={() => navigation.navigate('EditProfile')}
+                />
+              </TouchableOpacity>
         </View>
       </View>
       <UserReview />
