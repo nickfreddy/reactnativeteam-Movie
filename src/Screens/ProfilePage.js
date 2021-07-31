@@ -37,7 +37,7 @@ const ProfilePage = (props) => {
       <PassInput />
       <View
         style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
-        <Button title="LOGUT" onPress={() => console.log('njing')} />
+        <Button title="LOGOUT" />
       </View>
     </View>
   );
