@@ -6,22 +6,22 @@ import PassInput from '../components/PassInput'
 import ProfilePic from '../components/ProfilePic'
 import TxtInput from '../components/TxtInput'
 
-const RegisterScreen = () => {
+const RegisterScreen = (props) => {
     return (
         <View style={styles.backgroundBase}>
             <ProfilePic />
             <View style={styles.contentContainer}>
                 <View style={styles.containerInput}>
-                    <TxtInput placeholder='Name'/>
-                    <TxtInput placeholder='Username'/>
-                    <TxtInput placeholder='Email'/>
-                    <PassInput />
+                    <TxtInput placeholder='Name' title="Name" BGcolor="#325288"/>
+                    <TxtInput placeholder='Username' title="Username" BGcolor="#325288"/>
+                    <TxtInput placeholder='Email' title="Email" BGcolor="#325288"/>
+                    <PassInput title="Password" BGcolor="#325288"/>
                 </View>
-                <Button title="Submit"/>
+                <Button title="Submit" onPress={() => alert('It works')}/>
                 <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
-                    <Text style={{color:'white'}}>Don't have an account?</Text> 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Register')}>
-                        <Text style={{color:'yellow'}}> SignUp!</Text>
+                    <Text style={{color:'white'}}>Already have an account?</Text> 
+                    <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+                        <Text style={{color:'yellow'}}> SignIn!</Text>
                     </TouchableOpacity>
                 </View>
             </View>

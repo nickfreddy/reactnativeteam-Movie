@@ -23,8 +23,6 @@ const PassInput = props => {
           left: 60,
           color: 'white',
           backgroundColor: props.BGcolor,
-          borderWidth: 1,
-          borderColor: '#114E60',
           paddingLeft: 5,
           paddingRight: 5,
         }}>

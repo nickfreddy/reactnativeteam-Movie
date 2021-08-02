@@ -6,9 +6,7 @@ import Button from '../components/Button'
 import PassInput from '../components/PassInput'
 
 
-const LoginScreen = (props) => {
-
-
+const LoginScreen = (props) => {    
     return (
         <View style={styles.backgroundBase}>
             <Image 
@@ -17,8 +15,8 @@ const LoginScreen = (props) => {
             />
             <View style={styles.contentContainer}>
                 <View style={styles.containerInput}>
-                    <TxtInput placeholder="Username" />
-                    <PassInput placeholder="Password" />
+                    <TxtInput placeholder="Username" title="Username" BGcolor="#325288" />
+                    <PassInput placeholder="Password" title="Password" BGcolor="#325288"/>
                 </View>
                 <Button title="Login" onPress={()=> props.navigation.navigate('MainNavigator')}/>
                 <View style={{flexDirection:'row',alignItems:'center', justifyContent:'center'}}>
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     containerInput : {
-        width: widthScreen - (0.2 * widthScreen)
+        width: widthScreen - (0.15 * widthScreen)
     },
     image :{
         width:150, 

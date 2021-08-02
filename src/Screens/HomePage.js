@@ -3,12 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   FlatList,
-  ScrollView,
   TouchableOpacity,
-  Dimensions,
-  VirtualizedList,
 } from 'react-native';
 
 import Genre from '../components/Genre';
@@ -33,6 +29,11 @@ const HomePage = props => {
     dispatch({type: 'CLOSE_MODAL'})
   }
 
+  const navigateDetails = (data) => {
+    dispatch({type: 'GET_MOVIE_DETAILS', movieId : data.id})
+    props.navigation.navigate('MovieDetails', {movieId: data.id})
+  }
+
   const renderItem = ({item, index}) => {
     if (index !== 5) {
       return (
@@ -42,6 +43,7 @@ const HomePage = props => {
           voteCount={item.vote_count}
           posterPath={item.poster_path}
           modalShow={openModal}
+          onPress={() => navigateDetails(item)}
         />
       );
     } else {
