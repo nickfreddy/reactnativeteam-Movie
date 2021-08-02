@@ -34,11 +34,10 @@ const AllReviewPage = () => {
       <AllReview />
       <View
         style={{
-          position: 'absolute',
-          width: 50,
-          height: 50,
-          left: 330,
-          top: 540,
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          flex: 1,
+          margin: 10,
         }}>
         <AntDesign
           name="pluscircle"

@@ -1,6 +1,12 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 
 const EditReview = () => {
@@ -69,14 +75,19 @@ const EditReview = () => {
         </View>
 
         <TextInput
-          style={{borderWidth: 1, borderRadius: 10, width: 300, margin: 10}}
+          style={{
+            borderWidth: 1,
+            borderRadius: 10,
+            width: Dimensions.get('screen').width - 100,
+            margin: 10,
+          }}
           placeholder="Title"
         />
         <TextInput
           style={{
             borderWidth: 1,
             borderRadius: 10,
-            width: 300,
+            width: Dimensions.get('screen').width - 100,
             margin: 10,
             textAlignVertical: 'top',
           }}
