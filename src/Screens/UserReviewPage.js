@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import UserReview from '../components/UserReview';
-import HeaderReview from '../components/HeaderReview';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 

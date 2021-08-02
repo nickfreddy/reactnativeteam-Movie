@@ -1,8 +1,8 @@
 const genreState = {
     action:'Action',
     romance:'Romance',
-    thriller:'Thriller',
     comedy:'Comedy',
+    anime:'Anime',
     headline:'',
 }
 
@@ -12,22 +12,22 @@ const genre = (state = genreState, action) => {
         case 'ACTION':
             return {
                 ...state,
-                headline: 'Action'
+                headline: state.action
             }
         case 'ROMANCE':
             return {
                 ...state,
-                headline: 'Romance'
+                headline: state.romance
             }
         case 'THRILLER':
             return {
                 ...state,
-                headline: 'Thriller'
+                headline: state.comey
             }
         case 'COMEDY':
             return {
                 ...state,
-                headline: 'Comedy'
+                headline: state.anime
             }
 
         default:

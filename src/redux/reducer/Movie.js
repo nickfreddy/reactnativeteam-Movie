@@ -1,5 +1,7 @@
 const initialState =  {
-    movieData : []
+    movieId : '',
+    movieData : [],
+    movieDetails : {}
 }
 
 const movie = (state = initialState, action) => {
@@ -10,6 +12,16 @@ const movie = (state = initialState, action) => {
             return {
                 ...state,
                 movieData : action.data
+            }
+        case 'GET_MOVIE_DETAILS': 
+            return {
+                ...state,
+                movieId: action.movieId
+            }
+        case 'GET_MOVIE_DETAILS_SUCCESS' :
+            return {
+                ...state,
+                movieDetails : action.dataDetails
             }
         default :
             return state

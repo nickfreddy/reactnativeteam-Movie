@@ -38,9 +38,9 @@ const Genre = (props) => {
                 onClick={()=> actionHandler()}/>
                 <GenreBox name={genre.romance} colorBG={buttonState === 'buttonTwo' ? 'orange' : 'white'} 
                 onClick={()=> romanceHandler()}/>
-                <GenreBox name={genre.thriller} colorBG={buttonState === 'buttonThree' ? 'orange' : 'white'} 
+                <GenreBox name={genre.comedy} colorBG={buttonState === 'buttonThree' ? 'orange' : 'white'} 
                 onClick={()=> thrillerHandler()}/>
-                <GenreBox name={genre.comedy} colorBG={buttonState === 'buttonFour' ? 'orange' : 'white'} 
+                <GenreBox name={genre.anime} colorBG={buttonState === 'buttonFour' ? 'orange' : 'white'} 
                 onClick={()=> comedyHandler()}/>
             </View>
         </View>
