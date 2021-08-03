@@ -5,9 +5,9 @@ import TxtInput from '../components/TxtInput';
 import PassInput from '../components/PassInput';
 import ProfilePic from '../components/ProfilePic';
 import Button from '../components/Button';
-import HeaderEdit from './HeaderEdit';
+import HeaderEdit from '../components/HeaderEdit';
 
-const EditProfile = props => {
+const EditProfilePage = props => {
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderEdit />
@@ -32,4 +32,4 @@ const EditProfile = props => {
   );
 };
 
-export default EditProfile;
+export default EditProfilePage;
