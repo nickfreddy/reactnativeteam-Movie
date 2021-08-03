@@ -30,7 +30,7 @@ const HomePage_Details = (props) => {
                 <View style={{flexDirection:'row', justifyContent:'space-between', borderBottomWidth: 1, flexWrap:'wrap'}}>
                     <Text style={{fontSize:16, fontWeight:'bold'}}>{movieDetails_redux.title}</Text>
                     <View>
-                        <Text>{movieDetails_redux.release_date}</Text>
+                        <Text style={{textAlign:'right'}}>{movieDetails_redux.release_date}</Text>
                         <View style={{flexDirection:'row'}}>
                             {movieDetails_redux.genres.map((item, index) => 
                             (index !== movieDetails_redux.genres.length - 1) 
