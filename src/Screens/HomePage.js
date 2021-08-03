@@ -13,7 +13,7 @@ import SearchBox from '../components/SearchBox';
 
 import {connect, useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
-import ModalView from '../components/ModalView';
+import NewModal from '../components/NewModal';
 
 const HomePage = props => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const HomePage = props => {
   const movies_redux = useSelector(state => state.movie.movieData.slice(0,6))
 
   const openModal = () => {
-    dispatch({type: "OPEN_MODAL"})
+    dispatch({type: "OPEN_MODAL"})  
   }
 
   const closeModal = () => {
@@ -55,17 +55,17 @@ const HomePage = props => {
       );
     }
   };
-  useEffect(() => {
-    // dispatch({type: 'GET_DATA'})s
-  });
+  // useEffect(() => {
+  //   // dispatch({type: 'GET_DATA'})s
+  // });
 
   return (
     <View style={{backgroundColor: 'white'}}>
       <View style={styles.backgroundBase}>
-        <ModalView 
+        <NewModal 
         modalState={modal_redux}
-        onBackHandler={closeModal}
         onSubmitModal={closeModal}
+        modalClose={closeModal}
         />
         <SearchBox />
         <Genre />

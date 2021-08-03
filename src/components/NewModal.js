@@ -6,33 +6,17 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  StyleSheet
 } from 'react-native';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const newModal = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+const NewModal = (props) => {
   return (
-    <View style={{backgroundColor: 'rgba(128,128,128,0.5)'}}>
-      <Modal visible={modalOpen} transparent={true} animationType="slide">
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 30,
-            backgroundColor: '#F4EEE8',
-            borderWidth: 4,
-            borderRadius: 10,
-            width: '85%',
-            marginLeft: 30,
-            marginTop: 80,
-          }}>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={{margin: 10, fontWeight: 'bold', fontSize: 18}}>
+      <Modal visible={props.modalState} transparent={true} animationType="slide">
+        <View style={styles.modalBackground}>
+          <View style={styles.containerModal}>
+            <Text style={styles.headlineText}>
               How do you think about this movie?
             </Text>
             <View style={{flexDirection: 'row'}}>
@@ -47,61 +31,81 @@ const newModal = () => {
                 />
               </View>
             </View>
-
             <TextInput
-              style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                width: Dimensions.get('screen').width - 100,
-                margin: 10,
-              }}
+              style={styles.inputBox}
               placeholder="Title"
             />
             <TextInput
               style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                width: Dimensions.get('screen').width - 100,
-                margin: 10,
+                ...styles.inputBox,
                 textAlignVertical: 'top',
               }}
               multiline={true}
               numberOfLines={5}
-              placeholder="Comment here baby"
+              placeholder="Comment here"
             />
             <View style={{margin: 20, width: 150}}>
               <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  width: 150,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 40,
-                  backgroundColor: 'black',
-                }}>
+                onPress={() => props.onSubmitModal()}
+                style={styles.modalButton}>
                 <Text style={{color: 'white', fontWeight: 'bold'}}>Submit</Text>
               </TouchableOpacity>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: 5,
+                  marginVertical:10
+                }}>
+                <AntDesign
+                  name="delete"
+                  size={23}
+                  color="black"
+                  onPress={() => props.modalClose()}
+                />
+              </View>
             </View>
-          </View>
-
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 5,
-            }}>
-            <AntDesign
-              name="delete"
-              size={23}
-              color="black"
-              onPress={() => setModalOpen(false)}
-            />
           </View>
         </View>
       </Modal>
-    </View>
   );
 };
 
-export default newModal;
+export default NewModal;
+
+const styles = StyleSheet.create({
+  modalBackground : {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor:'rgba(128,128,128,0.5)',
+  },
+  containerModal : {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F4EEE8',
+    borderWidth: 4,
+    borderRadius: 10,
+    width: '85%',
+  },
+  headlineText : {
+    margin: 10, 
+    fontWeight: 'bold', 
+    fontSize: 18
+  },
+  inputBox : {
+    borderWidth: 1,
+    borderRadius: 10,
+    width: Dimensions.get('screen').width - 100,
+    margin: 10,
+  },
+  modalButton : {
+    borderWidth: 1,
+    borderRadius: 10,
+    width: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    backgroundColor: 'black',
+  }
+})
