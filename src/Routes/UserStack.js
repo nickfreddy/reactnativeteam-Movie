@@ -2,14 +2,14 @@ import React, {useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/core';
 import UserReviewPage from '../Screens/UserReviewPage';
-import EditProfile from '../components/EditProfile';
+import EditProfilePage from '../Screens/EditProfilePage';
 
 const Stack = createStackNavigator();
 
 const UserStack = ({route, navigation}) => {
   useEffect(() => {
     let focusedStack = getFocusedRouteNameFromRoute(route);
-    if (focusedStack === 'EditProfile') {
+    if (focusedStack === 'EditProfilePage') {
       navigation.setOptions({tabBarVisible: false});
     } else {
       navigation.setOptions({tabBarVisible: true});
@@ -25,7 +25,7 @@ const UserStack = ({route, navigation}) => {
       />
       <Stack.Screen
         name="EditProfile"
-        component={EditProfile}
+        component={EditProfilePage}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

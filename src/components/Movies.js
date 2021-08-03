@@ -5,13 +5,13 @@ import MovieFooter from './MovieFooter'
 const Movies = (props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={() => props.onPress()}>
-                <View style={{width: Dimensions.get('screen').width -100, height:100, borderWidth:1 }}>
-                    <Image source={{uri:'https://image.tmdb.org/t/p/w200' + props.posterPath}}
-                    style={{width: Dimensions.get('screen').width -100, height:100}}/>
-                </View>
-                <Text style={{color:'black', textAlign:'center'}}>{props.title}</Text>
-                <Text style={{textAlign:'justify'}}>{props.overview}</Text>
-                <MovieFooter modalShow={()=> props.modalShow} voteCount={props.voteCount}/>
+            <View style={{width: Dimensions.get('screen').width -100, height:100, borderWidth:1 }}>
+                <Image source={{uri:'https://image.tmdb.org/t/p/w200' + props.posterPath}}
+                style={{width: Dimensions.get('screen').width -100, height:100}}/>
+            </View>
+            <Text style={{color:'black', textAlign:'center'}}>{props.title}</Text>
+            <Text style={{textAlign:'justify'}}>{props.overview}</Text>
+            <MovieFooter modalShow={()=> props.modalShow()} voteCount={props.voteCount}/>
         </TouchableOpacity>
     )
 }

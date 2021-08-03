@@ -18,6 +18,8 @@ target 'MovieReact' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'MovieReactTests' do
     inherit! :complete
     # Pods for testing
