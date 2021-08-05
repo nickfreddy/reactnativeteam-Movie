@@ -11,6 +11,7 @@ function* Login(action) {
       data: action.data,
     });
     console.log(action.data);
+    console.log('+++++++>', resLogin.data);
     yield saveToken(resLogin.data.token);
     yield put({type: 'LOGIN_SUCCESS'});
     console.log('login sukses');
