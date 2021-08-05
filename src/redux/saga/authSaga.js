@@ -10,12 +10,12 @@ function* Login(action) {
       url: 'https://demovie.gabatch13.my.id/auth/login',
       data: action.data,
     });
-    console.log(resLogin.data);
+    console.log(action.data);
     yield saveToken(resLogin.data.token);
     yield put({type: 'LOGIN_SUCCESS'});
     console.log('login sukses');
   } catch (err) {
-    console.log(JSON.stringify(err));
+    console.log(err);
     yield put({type: 'LOGIN_ERROR'});
   }
 }

@@ -13,7 +13,7 @@ const TxtInput = props => {
           color: 'white',
           paddingLeft: 10,
         }}
-        onChangeText={() => props.input()}
+        onChangeText={props.input}
         value={props.value}
       />
       <Text

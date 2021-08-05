@@ -19,7 +19,7 @@ const LoginScreen = props => {
   const [password, setPassword] = useState('');
   const handleLogin = () => {
     const newData = {
-      username,
+      email: username,
       password,
     };
     props.login(newData);
