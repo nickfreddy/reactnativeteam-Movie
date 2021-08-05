@@ -25,6 +25,7 @@ const AppStack = props => {
     setTimeout(() => {
       SplashScreen.hide();
     }, 3000);
+    await getToken();
   }, []);
 
   return (

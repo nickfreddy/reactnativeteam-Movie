@@ -29,7 +29,11 @@ const genre = (state = genreState, action) => {
                 ...state,
                 headline: state.anime
             }
-
+        case 'RESET':
+            return {
+                ...state,
+                headline: ''
+            }
         default:
             return state
     }

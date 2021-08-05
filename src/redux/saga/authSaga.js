@@ -10,7 +10,6 @@ function* Login(action) {
       url: 'https://demovie.gabatch13.my.id/auth/login',
       data: action.data,
     });
-    console.log(action.data);
     console.log('+++++++>', resLogin.data);
     yield saveToken(resLogin.data.token);
     yield put({type: 'LOGIN_SUCCESS'});

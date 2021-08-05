@@ -23,14 +23,18 @@ const Genre = (props) => {
         dispatch({type: 'COMEDY'})
         setButtonState('buttonFour')
     }
+    const resetHandler = () => {
+        dispatch({type: 'RESET'})
+        setButtonState('')
+    }
 
 
     return (
         <View style={styles.container}>
             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                 <Text style={{...styles.text, fontSize:20}}>Best Genre</Text>
-                <TouchableOpacity>
-                    <Text style={styles.text}>More {'>>'}</Text>
+                <TouchableOpacity onPress={() => resetHandler()}>
+                    <Text style={styles.text}>reset {'>>'}</Text>
                 </TouchableOpacity>
             </View>
             <View style={{flexDirection:'row'}}>

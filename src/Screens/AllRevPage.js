@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux';
 const AllReviewPage = props => {
   const dispatch = useDispatch();
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
-
+  console.log(AllRev_redux)
   const renderAllRev = ({item, index}) => {
     if (index !== 10) {
       return (
@@ -20,7 +20,7 @@ const AllReviewPage = props => {
           username={item.user_id.username}
           comment={item.comment}
           photo={item.user_id.photo}
-          movieRev={item.movie_id.title}
+          movieRev={(item.movie_id === null) ? 'no title' : item.movie_id.title}
         />
       );
     }

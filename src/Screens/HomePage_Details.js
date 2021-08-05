@@ -4,19 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import MovieFooter from '../components/MovieFooter';
 import LinearGradient from 'react-native-linear-gradient'
 import Trailer from '../components/Trailer';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 
 const HomePage_Details = (props) => {
     const dispatch = useDispatch()
     const movieDetails_redux = useSelector(state => state.movie.movieDetails)
     const loading = useSelector(state => state.movie.loading)
-    
+    const movieTrailer = () => {
+        let path = movieDetails_redux.trailer.split('/')
+        return path[path.length - 1]    
+    }
+    console.log("for review",movieDetails_redux)
     useEffect(() => {
         dispatch({type:'GET_MOVIE_DETAILS'})
     }, [])
     
     if(loading) {
-        return <ActivityIndicator size="large" color="#0000ff" style={{flex:1, backgroundColor:'transparent'}}/>
+        return <ActivityIndicator size="large" color="#0000ff" style={{flex:1, backgroundColor:'#114E60'}}/>
     }
 
     return (
@@ -24,11 +29,9 @@ const HomePage_Details = (props) => {
         resizeMode="cover" 
         style={{flex:1}}>
             <LinearGradient colors={['transparent',  'black']} style={{flex:1}}>
-                {/* <Trailer /> */}
                 <ScrollView>
                     <View style={styles.containerBox}>
-                        <View style={styles.videoBox}>
-                        </View>
+                        <Trailer path={movieTrailer()} />
                         <View style={styles.topMiddleContent}>
                             <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>{movieDetails_redux.title} ({movieDetails_redux.release_year})</Text>
                             <View style={{flexDirection:'row'}}>
@@ -41,13 +44,29 @@ const HomePage_Details = (props) => {
                             <Text style={{textAlign:'justify',color:'white'}}>{movieDetails_redux.synopsis}</Text>
                         </View>
                         
-                        <View style={{width:'100%'}}>
-                            <MovieFooter 
-                            voteCount={movieDetails_redux.vote_count}
-                            modalShow={() => dispatch({type:'OPEN_MODAL'})}
-                            style={{color:'white'}}
-                            />
-                        </View>
+                        <View style={{width:'100%', marginTop:20, paddingHorizontal:10}}>
+                            <Text style={{color:'white', fontSize:20}}>Reviews</Text>
+                            <View style={styles.commentContainer}>
+                                {movieDetails_redux.reviews.map((item) => {
+                                return (
+                                <View key={item._id} style={styles.commentCard}>
+                                    <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+                                        <View style={{flexDirection:'row', alignItems:'center'}}>
+                                            <Image source={{uri: item.user_id.photo}} 
+                                            style={{width:50, height:50, borderRadius:30}}
+                                            />
+                                            <Text> username: {item.user_id.username}</Text>
+                                        </View>
+                                        <View style={{flexDirection:'row', marginHorizontal:10}}>
+                                            <Text style={{fontSize:21}}>{item.rating}</Text>
+                                            <AntDesign name="star" size={25} color="gold" />
+                                        </View>
+                                    </View>
+                                    <Text style={{margin:10}}>{item.comment}</Text>
+                                </View>)
+                                })}
+                            </View>
+                        </View> 
                     </View>
                 </ScrollView>
             </LinearGradient>
@@ -69,7 +88,6 @@ const styles = StyleSheet.create({
     },
     containerBox: {
         width: widthScreen,
-        height: heightScreen,
         alignItems:'center',
         justifyContent:'space-between',
         paddingVertical:100
@@ -78,13 +96,24 @@ const styles = StyleSheet.create({
         borderWidth:1,
         width: "80%",
         height: heightScreen - (0.8 * heightScreen),
-        backgroundColor:'black'
+        backgroundColor:'white'
     },
     topMiddleContent : {
         marginVertical: 10,
         justifyContent:'space-between', 
         alignItems:'center',
         height: '10%'
+    },
+    commentContainer : {
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    commentCard : {
+        width : widthScreen - (0.1 * widthScreen),
+        height: 100,
+        backgroundColor:'white',
+        marginVertical:20,
+        borderRadius:20,
     }
     
 })
