@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MainNavigator from './MainNavigator';
@@ -7,30 +7,30 @@ import {useDispatch} from 'react-redux';
 import LoginStack from './LoginStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
+import {getToken} from '../components/loginFunct';
 
 const Stack = createStackNavigator();
 
 const AppStack = props => {
-  const getToken = async () => {
-    const value = await AsyncStorage.getItem('token');
-    if (value !== null) {
-      props.checkToken();
-    }
-  };
+  const [token, setToken] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(async () => {
+    const token = await getToken();
+    if (token) {
+      setToken(token);
+    }
     dispatch({type: 'GET_DATA'});
     setTimeout(() => {
       SplashScreen.hide();
     }, 3000);
-  await getToken();
+    await getToken();
   }, []);
 
   return (
     <Stack.Navigator headerMode="none">
-      {props.verify ? (
+      {token ? (
         <Stack.Screen name="MainNavigator" component={MainNavigator} />
       ) : (
         <Stack.Screen name="LoginStack" component={LoginStack} />
