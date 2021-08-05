@@ -1,31 +1,52 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack'
-import MainNavigator from './MainNavigator'
-import SplashScreen from 'react-native-splash-screen'
-import {useDispatch} from 'react-redux'
-import LoginStack from './LoginStack'
+import React, {useEffect} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import MainNavigator from './MainNavigator';
+import SplashScreen from 'react-native-splash-screen';
+import {useDispatch} from 'react-redux';
+import LoginStack from './LoginStack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {connect} from 'react-redux';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
-const AppStack = () => {
-    const dispatch = useDispatch()
+const AppStack = props => {
+  const getToken = async () => {
+    const value = await AsyncStorage.getItem('token');
+    if (value !== null) {
+      props.checkToken();
+    }
+  };
 
-    useEffect( async() => {
-        dispatch({type: 'GET_DATA'})
-        setTimeout(() => {
-            SplashScreen.hide();
-        }, 3000);
-    },[])
+  const dispatch = useDispatch();
 
-    return (
-        <Stack.Navigator headerMode='none'>
-            <Stack.Screen name="LoginStack" component={LoginStack} />
-            <Stack.Screen name="MainNavigator" component={MainNavigator} />
-        </Stack.Navigator>
-    )
-}
+  useEffect(async () => {
+    dispatch({type: 'GET_DATA'});
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 3000);
+    getToken();
+  }, []);
 
-export default AppStack
+  return (
+    <Stack.Navigator headerMode="none">
+      {props.verify ? (
+        <Stack.Screen name="MainNavigator" component={MainNavigator} />
+      ) : (
+        <Stack.Screen name="LoginStack" component={LoginStack} />
+      )}
+    </Stack.Navigator>
+  );
+};
 
-const styles = StyleSheet.create({})
+const reduxState = state => ({
+  verify: state.auth.isLoggedIn,
+});
+
+const reduxDispatch = dispatch => ({
+  checkToken: () => dispatch({type: 'VERIFY_TOKEN'}),
+});
+
+export default connect(reduxState, reduxDispatch)(AppStack);
+
+const styles = StyleSheet.create({});

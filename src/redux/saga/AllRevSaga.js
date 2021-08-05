@@ -4,9 +4,10 @@ import {takeLatest} from 'redux-saga/effects';
 
 function* AllRevsData(action) {
   try {
-    const resAllRevData = yield axios.get('http://10.0.2.2:3000/data');
-    yield put({type: 'GET_ALL_REV_SUCCESS', data: resAllRevData.data});
-    console.log(resAllRevData.data);
+    const resAllRevData = yield axios.get(
+      'https://demovie.gabatch13.my.id/reviews',
+    );
+    yield put({type: 'GET_ALL_REV_SUCCESS', data: resAllRevData.data.data});
   } catch (err) {
     console.log(err);
   }

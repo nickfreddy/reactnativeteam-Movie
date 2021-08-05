@@ -12,13 +12,6 @@ const UserReviewPage = props => {
   //     return(
   //       <UserReview/>
   //     )
-  //   }else {
-  //     return (
-  //       <TouchableOpacity
-  //         style={{justifyContent: 'center', alignItems: 'center'}}>
-  //         <Text style={{color: 'white'}}>More</Text>
-  //       </TouchableOpacity>
-  //     );
   //   }
   // }
   return (
