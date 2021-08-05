@@ -20,6 +20,8 @@ target 'MovieReact' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'MovieReactTests' do
     inherit! :complete
     # Pods for testing

@@ -20,7 +20,6 @@ const HomePage = props => {
   const modal_redux = useSelector(state => state.modal.modalState)
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
-  console.log('ini movie', movies_redux)
   const openModal = () => {
     dispatch({type: "OPEN_MODAL"})  
   }
@@ -71,7 +70,7 @@ const HomePage = props => {
         <SearchBox />
         <Genre />
         <View style={{padding: 10, marginHorizontal: 10}}>
-          <Text style={styles.headerText}>Hot {headline_redux} Movies</Text>
+          <Text style={styles.headerText}>Hot{` ${headline_redux} `}Movies</Text>
         </View>
         <FlatList
             data={movies_redux}
