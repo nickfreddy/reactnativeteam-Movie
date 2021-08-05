@@ -12,7 +12,7 @@ const AllReviewPage = props => {
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
 
   const renderAllRev = ({item, index}) => {
-    if (index !== 5) {
+    if (index !== 10) {
       return (
         <AllReview
           movie_id={item.movie_id}
