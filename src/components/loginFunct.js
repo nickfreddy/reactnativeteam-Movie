@@ -19,4 +19,5 @@ export async function saveToken(token) {
 
 export async function removeToken() {
   AsyncStorage.removeItem('TOKEN');
+  //hae
 }
