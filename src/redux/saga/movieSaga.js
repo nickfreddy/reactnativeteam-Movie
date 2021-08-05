@@ -33,8 +33,8 @@ function* dataMoviesDetails(action) {
 }
 
 function* movieSaga() {
-    yield takeLatest('GET_DATA', dataMovies)
-    yield takeLatest('GET_MOVIE_DETAILS', dataMoviesDetails)
+  yield takeLatest('GET_DATA', dataMovies);
+  yield takeLatest('GET_MOVIE_DETAILS', dataMoviesDetails);
 }
 
-export default movieSaga
+export default movieSaga;

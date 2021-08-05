@@ -4,21 +4,26 @@ import {takeLatest} from 'redux-saga/effects';
 
 function* AllRevsData(action) {
   try {
-    const resAllRevData = yield axios.get('');
-    yield put({type: 'GET_ALL_REV_SUCCESS', data: resAllRevData.data});
+    const resAllRevData = yield axios.get(
+      'https://demovie.gabatch13.my.id/reviews',
+    );
+    yield put({type: 'GET_ALL_REV_SUCCESS', data: resAllRevData.data.data});
   } catch (err) {
     console.log(err);
   }
 }
 
 function* AllRevDataDetails(action) {
-  const review_Id = yield select(state => state.allrev.reviewId);
+  const review_Id = yield select(state => state.AllRev.reviewId);
   try {
-    const resDetailReview = yield axios.get('');
+    const resDetailReview = yield axios.get(
+      `http://10.0.2.2:3000/data?movie_id._id=${action.movie_id}`,
+    );
     yield put({
       type: 'GET_REVIEW_DETAILS_SUCCESS',
-      dataDetails: resDetailReview,
+      dataReviewDetails: resDetailReview.data,
     });
+    console.log(resDetailReview.data);
   } catch (err) {
     console.log(err);
   }

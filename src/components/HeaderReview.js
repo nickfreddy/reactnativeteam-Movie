@@ -11,8 +11,9 @@ const HeaderReview = props => {
         height: 62,
         alignItems: 'center',
       }}>
-      <AntDesign name="left" size={23} color="white" />
-      <Text style={{fontSize: 25, color: 'white'}}>{props.title}</Text>
+      <Text style={{fontSize: 25, color: 'white', paddingLeft: 20}}>
+        {props.title}
+      </Text>
     </View>
   );
 };
