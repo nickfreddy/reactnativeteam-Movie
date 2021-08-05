@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -19,8 +19,8 @@ const HomePage = props => {
   const dispatch = useDispatch();
   const modal_redux = useSelector(state => state.modal.modalState)
   const headline_redux = useSelector(state => state.genre.headline);
-  const movies_redux = useSelector(state => state.movie.movieData.slice(0,6))
-
+  const movies_redux = useSelector(state => state.movie.movieData)
+  console.log('ini movie', movies_redux)
   const openModal = () => {
     dispatch({type: "OPEN_MODAL"})  
   }
@@ -30,18 +30,22 @@ const HomePage = props => {
   }
 
   const navigateDetails = (data) => {
-    dispatch({type: 'GET_MOVIE_DETAILS', movieId : data.id})
-    props.navigation.navigate('MovieDetails', {movieId: data.id})
+    dispatch({type: 'GET_MOVIE_ID', movieId : data._id})
+    props.navigation.navigate('MovieDetails', {movieId: data._id})
   }
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({item, index}, headline) => {
+    // const filterGenres = movies_redux.map((item)=> )
+    
     if (index !== 5) {
       return (
         <Movies
           title={item.title}
-          overview={item.overview}
-          voteCount={item.vote_count}
-          posterPath={item.poster_path}
+          genre={item.genres[0]}
+          releaseYear={item.release_year}
+          overview={item.synopsis}
+          rating={item.averageRating}
+          posterPath={item.poster}
           modalShow={openModal}
           onPress={() => navigateDetails(item)}
         />
@@ -55,9 +59,6 @@ const HomePage = props => {
       );
     }
   };
-  // useEffect(() => {
-  //   // dispatch({type: 'GET_DATA'})s
-  // });
 
   return (
     <View style={{backgroundColor: 'white'}}>
@@ -82,11 +83,7 @@ const HomePage = props => {
   );
 };
 
-// const mapStateToProps = () => {
-
-// }
-
-export default connect()(HomePage);
+export default HomePage;
 
 const styles = StyleSheet.create({
   backgroundBase: {

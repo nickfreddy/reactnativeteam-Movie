@@ -1,11 +1,11 @@
 import { put, select } from "@redux-saga/core/effects";
 import axios from "axios";
-import { takeLatest } from "redux-saga/effects";
+import { call, takeLatest } from "redux-saga/effects";
 
 function* dataMovies(action) {
     try {
-        const resDataMovies = yield axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=9c4e75bc7c12882201bbc19a846352ba&language=en-US&page=1')
-        yield put({type:'GET_DATA_SUCCESS', data: resDataMovies.data.results})
+        const resDataMovies = yield axios.get('https://demovie.gabatch13.my.id/movies?page=1&limit=5')  
+        yield put({type:'GET_DATA_SUCCESS', data: resDataMovies.data.dataMovie})
         
     }
     catch (err) {
@@ -13,11 +13,19 @@ function* dataMovies(action) {
     }
 }
 
+async function getDetails(movieId) {
+    const response = await axios.get(`https://demovie.gabatch13.my.id/movies/${movieId}?revlimit=3&revpage=1`)
+                                .then(res => res.data)
+                                .catch(err => console.log(err))
+    return response
+}
+
 function* dataMoviesDetails(action) {
     const movie_id = yield select(state => state.movie.movieId)
     try {
-        const resDetailMovies = yield axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=9c4e75bc7c12882201bbc19a846352ba&language=en-US`)
-        yield put({type:'GET_MOVIE_DETAILS_SUCCESS', dataDetails: resDetailMovies})
+        const resDetailMovies = yield getDetails(movie_id)
+        console.log(resDetailMovies)
+        yield put({type:'GET_MOVIE_DETAILS_SUCCESS', dataDetails: resDetailMovies.data})
     } 
     catch (err) {
         console.log(err)

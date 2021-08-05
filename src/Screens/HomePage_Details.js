@@ -1,46 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ActivityIndicator, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ScrollView, ImageBackground } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchBox from '../components/SearchBox'
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import MovieFooter from '../components/MovieFooter';
 import LinearGradient from 'react-native-linear-gradient'
+import Trailer from '../components/Trailer';
+
 
 const HomePage_Details = (props) => {
     const dispatch = useDispatch()
-    const movieDetails_redux = useSelector(state => state.movie.movieDetails.data)
-
-    console.log(movieDetails_redux)
-    if(movieDetails_redux === undefined) {
-        return (
-            <ActivityIndicator style={{flex:1}}/>
-        )
+    const movieDetails_redux = useSelector(state => state.movie.movieDetails)
+    const loading = useSelector(state => state.movie.loading)
+    
+    useEffect(() => {
+        dispatch({type:'GET_MOVIE_DETAILS'})
+    }, [])
+    
+    if(loading) {
+        return <ActivityIndicator size="large" color="#0000ff" style={{flex:1, backgroundColor:'transparent'}}/>
     }
 
     return (
-        <ImageBackground source={{uri:'https://image.tmdb.org/t/p/w200' + movieDetails_redux.poster_path}} 
+        <ImageBackground source={{uri: movieDetails_redux.poster}} 
         resizeMode="cover" 
         style={{flex:1}}>
             <LinearGradient colors={['transparent',  'black']} style={{flex:1}}>
+                {/* <Trailer /> */}
                 <ScrollView>
                     <View style={styles.containerBox}>
                         <View style={styles.videoBox}>
-                            <Text style={{color:'white'}}>Video</Text>
                         </View>
                         <View style={styles.topMiddleContent}>
-                            <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>{movieDetails_redux.title}</Text>
-                            <Text style={{color:'white'}}>{movieDetails_redux.release_date}</Text>
+                            <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>{movieDetails_redux.title} ({movieDetails_redux.release_year})</Text>
                             <View style={{flexDirection:'row'}}>
-                                {movieDetails_redux.genres.map((item, index) => 
-                                (index !== movieDetails_redux.genres.length - 1) 
-                                ?  <Text key={index} style={{color:'white'}}>{item.name} | </Text>
-                                : (<Text key={index} style={{color:'white'}}>{item.name}</Text>)
-                                )}
+                                <Text style={{color:'white'}}>{movieDetails_redux.genres[0]}</Text>
                             </View>
                         </View>
 
-                        <View>
-                            <Text style={{textAlign:'justify',color:'white'}}>{movieDetails_redux.overview}</Text>
+                        <View style={{width:'100%', paddingHorizontal:10}}>
+                            <Text style={{ borderBottomWidth:1, color:'white', borderBottomColor:'white', fontSize:25, fontWeight:'bold'}} >Overview</Text>
+                            <Text style={{textAlign:'justify',color:'white'}}>{movieDetails_redux.synopsis}</Text>
                         </View>
                         
                         <View style={{width:'100%'}}>
@@ -54,27 +52,6 @@ const HomePage_Details = (props) => {
                 </ScrollView>
             </LinearGradient>
         </ImageBackground>
-// {/* 
-//         <View style={styles.backgroundBase}>
-//             <ScrollView >
-//                 <View style={{paddingVertical:10, alignItems:'center'}}>
-//                     <Image source={{uri:'https://image.tmdb.org/t/p/w200' + movieDetails_redux.poster_path}}
-//                     style={{width:100, height:150}}
-//                     />
-//                     <View style={{flexDirection: 'row', justifyContent:'space-between', paddingVertical:10}}>
-//                         <View style={{alignItems:'center',borderRightWidth:1, paddingHorizontal:5}}>
-//                             <AntDesign name="star" size={20} color="gold" />
-//                             <Text style={{fontWeight: 'bold'}}>{movieDetails_redux.vote_average}/10</Text>
-//                         </View>
-//                         <TouchableOpacity style={{alignItems:'center', paddingHorizontal:5}}>
-//                             <AntDesign name="star" size={20} color="grey" />
-//                             <Text>Rate This!</Text>
-//                         </TouchableOpacity>
-//                     </View>
-//                 </View>
-//                 </View>
-//             </ScrollView>
-//         </View> */}
     )
 }
 
@@ -106,7 +83,6 @@ const styles = StyleSheet.create({
     topMiddleContent : {
         marginVertical: 10,
         justifyContent:'space-between', 
-        borderBottomWidth: 1,
         alignItems:'center',
         height: '10%'
     }
