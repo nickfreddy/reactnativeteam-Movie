@@ -20,14 +20,8 @@ const AllReviewPage = props => {
           username={item.user_id.username}
           comment={item.comment}
           photo={item.user_id.photo}
+          movieRev={item.movie_id.title}
         />
-      );
-    } else {
-      return (
-        <TouchableOpacity
-          style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{color: 'white'}}>More</Text>
-        </TouchableOpacity>
       );
     }
   };
@@ -58,3 +52,4 @@ const AllReviewPage = props => {
 };
 
 export default AllReviewPage;
+//json-server --watch response.json --port 3000

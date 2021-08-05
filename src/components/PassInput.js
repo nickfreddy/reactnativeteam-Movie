@@ -15,6 +15,8 @@ const PassInput = props => {
         }}
         underlineColorAndroid="transparent"
         secureTextEntry={true}
+        onChangeText={props.input}
+        value={props.value}
       />
       <Text
         style={{
