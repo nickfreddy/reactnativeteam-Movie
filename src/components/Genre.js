@@ -10,22 +10,27 @@ const Genre = (props) => {
     const actionHandler = () => {
         dispatch({type: 'ACTION'})
         setButtonState('buttonOne')
+        dispatch({type: 'GET_MOVIE_BY_GENRE', genre :'action'})
     }
     const romanceHandler = () => {
         dispatch({type: 'ROMANCE'})
         setButtonState('buttonTwo')
-    }
-    const thrillerHandler = () => {
-        dispatch({type: 'THRILLER'})
-        setButtonState('buttonThree')
+        dispatch({type: 'GET_MOVIE_BY_GENRE', genre :'romance'})
     }
     const comedyHandler = () => {
         dispatch({type: 'COMEDY'})
+        setButtonState('buttonThree')
+        dispatch({type: 'GET_MOVIE_BY_GENRE', genre :'comedy'})
+    }
+    const animeHandler = () => {
+        dispatch({type: 'ANIME'})
         setButtonState('buttonFour')
+        dispatch({type: 'GET_MOVIE_BY_GENRE', genre :'anime'})
     }
     const resetHandler = () => {
         dispatch({type: 'RESET'})
         setButtonState('')
+        dispatch({type: 'GET_DATA'})
     }
 
 
@@ -43,9 +48,9 @@ const Genre = (props) => {
                 <GenreBox name={genre.romance} colorBG={buttonState === 'buttonTwo' ? 'orange' : 'white'} 
                 onClick={()=> romanceHandler()}/>
                 <GenreBox name={genre.comedy} colorBG={buttonState === 'buttonThree' ? 'orange' : 'white'} 
-                onClick={()=> thrillerHandler()}/>
-                <GenreBox name={genre.anime} colorBG={buttonState === 'buttonFour' ? 'orange' : 'white'} 
                 onClick={()=> comedyHandler()}/>
+                <GenreBox name={genre.anime} colorBG={buttonState === 'buttonFour' ? 'orange' : 'white'} 
+                onClick={()=> animeHandler()}/>
             </View>
         </View>
     )

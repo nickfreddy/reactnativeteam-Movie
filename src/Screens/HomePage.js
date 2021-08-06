@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator} from 'react-native';
 
 import Genre from '../components/Genre';
 import Movies from '../components/Movies';
@@ -15,6 +15,10 @@ const HomePage = props => {
   const modal_redux = useSelector(state => state.modal.modalState);
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
+  const isloading = useSelector(state => state.movie.loading)
+  console.log('ini redux movie', isloading)
+
+
   const openModal = () => {
     dispatch({type: 'OPEN_MODAL'});
   };
@@ -29,8 +33,6 @@ const HomePage = props => {
   };
 
   const renderItem = ({item, index}, headline) => {
-    // const filterGenres = movies_redux.map((item)=> )
-
     if (index !== 5) {
       return (
         <Movies
@@ -38,7 +40,7 @@ const HomePage = props => {
           genre={item.genres[0]}
           releaseYear={item.release_year}
           overview={item.synopsis}
-          rating={item.averageRating}
+          rating={item.averageRating === null ? "-" : item.averageRating}
           posterPath={item.poster}
           modalShow={openModal}
           onPress={() => navigateDetails(item)}
@@ -67,11 +69,15 @@ const HomePage = props => {
         <View style={{padding: 10, marginHorizontal: 10}}>
           <Text style={styles.headerText}>Hot{` ${headline_redux} `}Movies</Text>
         </View>
+        {isloading ? <ActivityIndicator size='large' color='blue' /> : 
         <FlatList
-          data={movies_redux}
-          keyExtractor={(elem, i) => i}
-          renderItem={renderItem}
+        data={movies_redux}
+        keyExtractor={(elem, i) => i}
+        renderItem={renderItem}
         />
+      }
+        
+        
       </View>
     </View>
   );
