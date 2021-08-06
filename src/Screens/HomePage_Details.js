@@ -5,6 +5,7 @@ import MovieFooter from '../components/MovieFooter';
 import LinearGradient from 'react-native-linear-gradient'
 import Trailer from '../components/Trailer';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import moment from 'moment';
 
 
 const HomePage_Details = (props) => {
@@ -51,24 +52,31 @@ const HomePage_Details = (props) => {
                         <View style={{width:'100%', marginTop:20, paddingHorizontal:10}}>
                             <Text style={{color:'white', fontSize:20}}>Reviews</Text>
                             <View style={styles.commentContainer}>
-                                {movieDetails_redux.reviews.map((item) => {
-                                return (
-                                <View key={item._id} style={styles.commentCard}>
-                                    <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-                                        <View style={{flexDirection:'row', alignItems:'center'}}>
-                                            <Image source={{uri: item.user_id.photo}} 
-                                            style={{width:50, height:50, borderRadius:30}}
-                                            />
-                                            <Text> username: {item.user_id.username}</Text>
-                                        </View>
-                                        <View style={{flexDirection:'row', marginHorizontal:10}}>
-                                            <Text style={{fontSize:21}}>{item.rating}</Text>
-                                            <AntDesign name="star" size={25} color="gold" />
-                                        </View>
-                                    </View>
-                                    <Text style={{margin:10}}>{item.comment}</Text>
-                                </View>)
-                                })}
+                                {(movieDetails_redux.reviews.length > 0) 
+                                    ? movieDetails_redux.reviews.map((item) => {
+                                        return (
+                                        <View key={item._id} style={styles.commentCard}>
+                                            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+                                                <View style={{flexDirection:'row', alignItems:'center'}}>
+                                                    <Image source={{uri: item.user_id.photo}} 
+                                                    style={{width:50, height:50, borderRadius:30}}
+                                                    />
+                                                    <View>
+                                                        <Text> username: {item.user_id.username}</Text>
+                                                        <Text> Reviewed {moment(item.createdAt).startOf('day').fromNow()    }</Text>
+                                                    </View> 
+                                                </View>
+                                                <View style={{flexDirection:'row', marginHorizontal:10}}>
+                                                    <Text style={{fontSize:21}}>{item.rating}</Text>
+                                                    <AntDesign name="star" size={25} color="gold" />
+                                                </View>
+                                            </View>
+                                            <Text style={{margin:10}}>{item.comment}</Text>
+                                        </View>) 
+                                    }) 
+                                    : <Text style={{color:'white'}}>No one has review this movie</Text>
+
+                                }
                             </View>
                         </View> 
                     </View>
