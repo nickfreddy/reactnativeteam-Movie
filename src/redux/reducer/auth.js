@@ -1,6 +1,7 @@
 const initialState = {
   isLoading: false,
   isLoggedIn: false,
+  message : null
 };
 
 const auth = (state = initialState, action) => {
@@ -13,12 +14,14 @@ const auth = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
+        message: null,
         isLoading: false,
         isLoggedIn: true,
       };
     case 'LOGIN_FAILED':
       return {
         ...state,
+        message: action.message,
         isLoading: false,
       };
     case 'LOGOUT':

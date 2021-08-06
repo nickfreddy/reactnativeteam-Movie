@@ -13,6 +13,7 @@ const EditProfilePage = props => {
   const dispatch = useDispatch()
   const logedIn = useSelector(state => state.auth.isLoggedIn)
 
+  // console.log()
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderEdit />
@@ -31,9 +32,9 @@ const EditProfilePage = props => {
         <Button
           title="LOGOUT"
           onPress={ async() => {
-            await removeToken()
             dispatch({type: 'LOGOUT'})
-            props.navigation.navigate("LoginStack")
+            await removeToken()
+            props.navigation.navigate("LoginStack", {screen:'Login'})
           }}
         />
       </View>

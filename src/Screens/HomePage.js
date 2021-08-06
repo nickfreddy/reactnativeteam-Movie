@@ -16,8 +16,7 @@ const HomePage = props => {
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
   const isloading = useSelector(state => state.movie.loading)
-  console.log('ini redux movie', isloading)
-
+  console.log('ini redux movie', movies_redux)
 
   const openModal = () => {
     dispatch({type: 'OPEN_MODAL'});
@@ -33,11 +32,10 @@ const HomePage = props => {
   };
 
   const renderItem = ({item, index}, headline) => {
-    if (index !== 5) {
       return (
         <Movies
           title={item.title}
-          genre={item.genres[0]}
+          genre={item.genres}
           releaseYear={item.release_year}
           overview={item.synopsis}
           rating={item.averageRating === null ? "-" : item.averageRating}
@@ -46,14 +44,6 @@ const HomePage = props => {
           onPress={() => navigateDetails(item)}
         />
       );
-    } else {
-      return (
-        <TouchableOpacity
-          style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{color: 'white'}}>More</Text>
-        </TouchableOpacity>
-      );
-    }
   };
 
   return (
@@ -67,7 +57,7 @@ const HomePage = props => {
         <SearchBox />
         <Genre />
         <View style={{padding: 10, marginHorizontal: 10}}>
-          <Text style={styles.headerText}>Hot{` ${headline_redux} `}Movies</Text>
+          <Text style={styles.headerText}>Hot{`${(headline_redux === '') ? " " : " " + headline_redux+" " }`}Movies</Text>
         </View>
         {isloading ? <ActivityIndicator size='large' color='blue' /> : 
         <FlatList

@@ -4,14 +4,19 @@ import MovieFooter from './MovieFooter'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Movies = (props) => {
-    const upperCaseGenre = props.genre[0].toUpperCase() + props.genre.substring(1)
 
     return (
         <TouchableOpacity style={styles.container} onPress={() => props.onPress()}>
             <View style={styles.topContent}>
                 <Text style={styles.titleText}>{props.title}</Text>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                    <Text style={styles.subTitleText}>{upperCaseGenre}</Text>
+                    <View style={{flexDirection:'row'}}>
+                        {(props.genre.map((item,index) => 
+                            (index !== props.genre.length - 1) 
+                            ? <Text key={index} style={styles.subTitleText}>{item[0].toUpperCase() + item.substring(1)}| </Text>
+                            : <Text key={index} style={styles.subTitleText}>{item[0].toUpperCase() + item.substring(1)}</Text>
+                        ))}
+                    </View>
                     <Text style={styles.subTitleText}>{props.releaseYear}</Text>
                 </View>
             </View>
@@ -59,9 +64,7 @@ const styles = StyleSheet.create({
     middleContent : {
         width: '100%', 
         flexDirection:"row", 
-        justifyContent:"space-around"
+        justifyContent:"space-around",
+        marginVertical:10
     }
-    
-    
-
 })

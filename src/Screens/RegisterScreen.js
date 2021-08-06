@@ -7,15 +7,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Button from '../components/Button';
-import EditProfilePage from '../Screens/EditProfilePage';
 import PassInput from '../components/PassInput';
-import ProfilePic from '../components/ProfilePic';
 import TxtInput from '../components/TxtInput';
 
 const RegisterScreen = props => {
   return (
     <View style={styles.backgroundBase}>
-      <ProfilePic />
       <View style={styles.contentContainer}>
         <View style={styles.containerInput}>
           <TxtInput placeholder="Name" title="Name" BGcolor="#325288" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import moment from 'moment'
 
 const UserReviews = props => {
   return (
@@ -28,7 +29,7 @@ const UserReviews = props => {
                 <Text style={{fontWeight: 'bold', fontSize: 20}}>
                   {props.movieTitle}
                 </Text>
-                <Text> Reviewed on : {props.createDate}</Text>
+                <Text> Reviewed on : {moment(props.createDate).format('MMM Do YYYY')}</Text>
                 <View style={{flexDirection: 'row'}}>
                   <AntDesign name="star" size={18} color="gold" />
                   <View style={{flexDirection: 'row'}}>

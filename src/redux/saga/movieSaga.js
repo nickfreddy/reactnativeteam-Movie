@@ -52,10 +52,29 @@ function* dataMovieGenre(action) {
     }
 }
 
+async function getMovieSearch(title) {
+    const response = await axios.get(`https://demovie.gabatch13.my.id/movies/search?title=${title}&page=1&limit=2`)
+                                    .then(res => res.data)
+                                    .catch(err => console.log(err))
+    return response
+}
+
+function* dataMovieSearch(action) {
+    try {
+        const resMovieSearch = yield getMovieSearch(action.payload)
+        console.log('res', resMovieSearch.dataMovie)
+        yield put({type:'GET_MOVIE_BY_SEARCH_SUCCESS', dataSearch: resMovieSearch.dataMovie})
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 function* movieSaga() {
   yield takeLatest('GET_DATA', dataMovies);
   yield takeLatest('GET_MOVIE_DETAILS', dataMoviesDetails);
-  yield takeLatest('GET_MOVIE_BY_GENRE', dataMovieGenre)
+  yield takeLatest('GET_MOVIE_BY_GENRE', dataMovieGenre);
+  yield takeLatest('GET_MOVIE_BY_SEARCH', dataMovieSearch)
 }
 
 export default movieSaga;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   Image,
   StyleSheet,
@@ -11,12 +12,16 @@ import {useNavigation} from '@react-navigation/native';
 import TxtInput from '../components/TxtInput';
 import Button from '../components/Button';
 import PassInput from '../components/PassInput';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
+import { color } from 'react-native-reanimated';
 
 const LoginScreen = props => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const loading = useSelector(state => state.auth.isLoading)
+  const message = useSelector(state => state.auth.message)
+  console.log(loading)
   const handleLogin = () => {
     const newData = {
       email,
@@ -29,6 +34,7 @@ const LoginScreen = props => {
     <View style={styles.backgroundBase}>
       <Image source={require('../assets/LogoBlue.jpg')} style={styles.image} />
       <View style={styles.contentContainer}>
+        {(message !== null) ? <Text style={{color:'white'}}>Wrong email or password!</Text> : null}
         <View style={styles.containerInput}>
           <TxtInput
             placeholder="Username"
@@ -45,7 +51,11 @@ const LoginScreen = props => {
             value={password}
           />
         </View>
-        <Button title="Login" onPress={() => handleLogin()} />
+        {(!loading) 
+        ? <Button title="Login" onPress={() => handleLogin()} />
+        : <ActivityIndicator color='orange' size='large'/> 
+        }
+        
         <View
           style={{
             flexDirection: 'row',

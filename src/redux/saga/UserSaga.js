@@ -5,7 +5,7 @@ import {getUserId} from '../../components/loginFunct';
 
 function* dataUsers(action) {
   try {
-    console.log('mulai');
+    console.log('mulai get user');
     const resUserId = yield getUserId();
     const resdataUsers =
       yield axios.get(`https://demovie.gabatch13.my.id/users/${resUserId}

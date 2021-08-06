@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, TouchableOpacity, Text} from 'react-native';
+import {View, FlatList, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AllReview from '../components/AllReview';
 import HeaderReview from '../components/HeaderReview';
@@ -10,7 +10,8 @@ import {useSelector} from 'react-redux';
 const AllReviewPage = props => {
   const dispatch = useDispatch();
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
-
+  const loading = useSelector(state => state.AllRev.isLoading)
+  console.log(loading)
   const renderAllRev = ({item, index}) => {
     if (index !== 10) {
       return (
@@ -32,12 +33,14 @@ const AllReviewPage = props => {
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderReview title="AllReview" />
-
-      <FlatList
+      {(loading) 
+        ? <ActivityIndicator size='large' color='blue' style={{flex:1}} />
+        : <FlatList
         data={AllRev_redux}
         keyExtractor={(elem, i) => i}
         renderItem={renderAllRev}
-      />
+        />
+      }
       <View
         style={{
           justifyContent: 'flex-end',
