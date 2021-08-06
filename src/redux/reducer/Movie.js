@@ -45,6 +45,17 @@ const movie = (state = initialState, action) => {
                 movieData : action.dataGenre,
                 loading:false
             }
+        case 'GET_MOVIE_BY_SEARCH':
+            return {
+                ...state,
+                loading: true,
+            }
+        case 'GET_MOVIE_BY_SEARCH_SUCCESS':
+            return {
+                ...state,
+                movieData : action.dataSearch,
+                loading:false
+            }
         default :
             return state
     }

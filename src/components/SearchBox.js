@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useDispatch } from 'react-redux'
 
 const SearchBox = () => {
+    const dispatch = useDispatch()
+    const [input, setInput] = useState('')
+    console.log(input)
+
+    const handleSearch = () => {
+        dispatch({type: 'GET_MOVIE_BY_SEARCH', payload: input})
+    }
     return (
         <View style={styles.searchBox}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> handleSearch()}>
                 <MaterialCommunityIcon name='magnify' size={25} />
             </TouchableOpacity>
-            <TextInput placeholder='Search Movies...' value='search'/>
+            <TextInput 
+                placeholder='Search Movies...' 
+                value={input}
+                onChangeText={(text) => setInput(text)}
+            />
         </View>
     )
 }

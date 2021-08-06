@@ -31,9 +31,9 @@ const EditProfilePage = props => {
         <Button
           title="LOGOUT"
           onPress={ async() => {
-            await removeToken()
             dispatch({type: 'LOGOUT'})
-            props.navigation.navigate("LoginStack")
+            await removeToken()
+            props.navigation.navigate("Login")
           }}
         />
       </View>

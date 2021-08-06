@@ -35,7 +35,11 @@ const HomePage_Details = (props) => {
                         <View style={styles.topMiddleContent}>
                             <Text style={{fontSize:20, fontWeight:'bold', color:'white'}}>{movieDetails_redux.title} ({movieDetails_redux.release_year})</Text>
                             <View style={{flexDirection:'row'}}>
-                                <Text style={{color:'white'}}>{movieDetails_redux.genres[0]}</Text>
+                                {(movieDetails_redux.genres.map((item,index) => 
+                                    (index !== movieDetails_redux.genres.length - 1) 
+                                    ? <Text key={index} style={{color:'white'}}>{item[0].toUpperCase() + item.substring(1)} | </Text>
+                                    : <Text key={index} style={{color:'white'}}>{item[0].toUpperCase() + item.substring(1)}</Text>
+                                ))}
                             </View>
                         </View>
 

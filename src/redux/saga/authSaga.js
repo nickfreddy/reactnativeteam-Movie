@@ -16,7 +16,8 @@ function* Login(action) {
     console.log('login sukses');
   } catch (err) {
     console.log(err);
-    yield put({type: 'LOGIN_ERROR'});
+    yield put({type: 'LOGIN_FAILED', message: err});
+    console.log('login gagal')
   }
 }
 
