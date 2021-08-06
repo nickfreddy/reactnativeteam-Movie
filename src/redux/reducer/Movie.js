@@ -56,6 +56,14 @@ const movie = (state = initialState, action) => {
                 movieData : action.dataSearch,
                 loading:false
             }
+        case 'LOGOUT':
+            return {
+                ...state,
+                loading: false,
+                movieId : '',
+                movieData : [],
+                movieDetails : {}
+            };
         default :
             return state
     }

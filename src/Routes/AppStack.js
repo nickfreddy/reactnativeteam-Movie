@@ -17,9 +17,11 @@ const AppStack = props => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    const token = await getToken();
-    if (token) {
-      setToken(token);
+    const tempToken = await getToken();
+    if (tempToken) {
+      setToken(tempToken);
+    } else {
+      setToken(null)
     }
     dispatch({type: 'GET_DATA'});
     dispatch({type: 'GET_USER'});
@@ -27,7 +29,7 @@ const AppStack = props => {
       SplashScreen.hide();
     }, 3000);
     await getToken();
-  }, []);
+  }, [token]);
 
   return (
     <Stack.Navigator headerMode="none">

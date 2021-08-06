@@ -2,16 +2,21 @@ const initialState = {
   reviewId: '',
   AllRevData: [],
   reviewDetails: {},
+  isLoading: false
 };
 
 const AllRev = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_ALL_REV':
-      return state;
+      return {
+        ...state,
+        isLoading: true
+      }
     case 'GET_ALL_REV_SUCCESS':
       return {
         ...state,
         AllRevData: action.data,
+        isLoading: false
       };
     case 'GET_REVIEW_DETAILS':
       return {
