@@ -1,7 +1,8 @@
 const initialState = {
   isLoading: false,
   isLoggedIn: false,
-  message : null
+  loginMessage : null,
+  registerMessage: null,
 };
 
 const auth = (state = initialState, action) => {
@@ -14,14 +15,14 @@ const auth = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        message: null,
+        loginMessage: null,
         isLoading: false,
         isLoggedIn: true,
       };
     case 'LOGIN_FAILED':
       return {
         ...state,
-        message: action.message,
+        loginMessage: action.message,
         isLoading: false,
       };
     case 'LOGOUT':
@@ -33,6 +34,24 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
+      };
+    case 'REGISTER':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'REGISTER_SUCCESS':
+      return {
+        ...state,
+        registerMessage: null,
+        isLoading: false,
+        isLoggedIn: true,
+      };
+    case 'REGISTER_FAILED':
+      return {
+        ...state,
+        registerMessage: action.message,
+        isLoading: false,
       };
     default:
       return state;

@@ -24,9 +24,9 @@ const UserReviewPage = props => {
     }
   };
 
-  useEffect(() => {
-    dispatch({type: 'GET_USER'});
-  }, []);
+  // useEffect(() => {
+  //   dispatch({type: 'GET_USER'});
+  // }, []);
 
   // useEffect(() => {
   //   console.log(user_redux);

@@ -20,8 +20,8 @@ const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const loading = useSelector(state => state.auth.isLoading)
-  const message = useSelector(state => state.auth.message)
-  console.log(loading)
+  const message = useSelector(state => state.auth.loginMessage)
+  // console.log(message)
   const handleLogin = () => {
     const newData = {
       email,
@@ -108,4 +108,3 @@ const styles = StyleSheet.create({
     height: 150,
   },
 });
-//haeeee

@@ -12,10 +12,14 @@ const HomePage_Details = (props) => {
     const dispatch = useDispatch()
     const movieDetails_redux = useSelector(state => state.movie.movieDetails)
     const loading = useSelector(state => state.movie.loading)
-    const movieTrailer = () => {
-        let path = movieDetails_redux.trailer.split('/')
-        return path[path.length - 1]    
+
+    const movieTrailer = (data) => {
+        let path = movieDetails_redux.trailer
+        return path.includes('watch') 
+        ? path.split('=')[1]
+        : path.split('/')[3]
     }
+
     console.log("for review",movieDetails_redux)
     useEffect(() => {
         dispatch({type:'GET_MOVIE_DETAILS'})
