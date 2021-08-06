@@ -6,6 +6,7 @@ import HomeStack from './HomeStack';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserStack from './UserStack';
 import {Image} from 'react-native';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,8 @@ const IconRoute = {
 };
 
 const MainNavigator = () => {
+  const userPhoto = useSelector(state => state.User.userData.photo)
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -44,7 +47,7 @@ const MainNavigator = () => {
                 borderWidth: 1,
                 borderColor: 'black',
               }}
-              source={require('../components/Tita.png')}
+              source={{uri: userPhoto}}
             />
           ),
         }}

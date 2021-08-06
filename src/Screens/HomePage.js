@@ -18,6 +18,11 @@ const HomePage = props => {
   const isloading = useSelector(state => state.movie.loading)
   console.log('ini redux movie', movies_redux)
 
+  useEffect(() => {
+    dispatch({type: 'GET_DATA'})
+    dispatch({type: 'GET_USER'})
+  }, [])
+
   const openModal = () => {
     dispatch({type: 'OPEN_MODAL'});
   };
