@@ -15,11 +15,11 @@ import {connect} from 'react-redux';
 
 const LoginScreen = props => {
   const navigation = useNavigation();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
     const newData = {
-      email: username,
+      email,
       password,
     };
     props.login(newData);
@@ -32,10 +32,10 @@ const LoginScreen = props => {
         <View style={styles.containerInput}>
           <TxtInput
             placeholder="Username"
-            title="Username"
+            title="Email"
             BGcolor="#325288"
-            input={text => setUsername(text)}
-            value={username}
+            input={text => setEmail(text)}
+            value={email}
           />
           <PassInput
             placeholder="Password"

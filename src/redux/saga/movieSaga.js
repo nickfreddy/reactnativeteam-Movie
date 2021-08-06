@@ -24,7 +24,7 @@ function* dataMoviesDetails(action) {
     const movie_id = yield select(state => state.movie.movieId)
     try {
         const resDetailMovies = yield getDetails(movie_id)
-        console.log(resDetailMovies)
+        // console.log(resDetailMovies)
         yield put({type:'GET_MOVIE_DETAILS_SUCCESS', dataDetails: resDetailMovies.data})
     } 
     catch (err) {
@@ -32,9 +32,30 @@ function* dataMoviesDetails(action) {
     }
 }
 
+async function getMovieGenre(genre) {
+    const response = await axios.get(`https://demovie.gabatch13.my.id/movies/genres/${genre}?page=1&limit=5`)
+                                    .then(res => res.data)
+                                    .catch(err => console.log(err))
+    return response
+}
+
+function* dataMovieGenre(action) {
+    const genre = yield select(state => state.genre.headline.toLowerCase())
+    try {
+        console.log(genre)
+        const resMovieGenre = yield getMovieGenre(genre)
+        console.log('res', resMovieGenre.dataMovie)
+        yield put({type:'GET_MOVIE_BY_GENRE_SUCCESS', dataGenre: resMovieGenre.dataMovie})
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
 function* movieSaga() {
   yield takeLatest('GET_DATA', dataMovies);
   yield takeLatest('GET_MOVIE_DETAILS', dataMoviesDetails);
+  yield takeLatest('GET_MOVIE_BY_GENRE', dataMovieGenre)
 }
 
 export default movieSaga;

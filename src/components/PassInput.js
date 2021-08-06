@@ -22,7 +22,7 @@ const PassInput = props => {
         style={{
           position: 'absolute',
           bottom: 42,
-          left: 60,
+          left: 50,
           color: 'white',
           backgroundColor: props.BGcolor,
           paddingLeft: 5,
