@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const User = (state = initialState, action) => {
-  switch (action.data) {
+  switch (action.type) {
     case 'GET_USER':
       return state;
     case 'GET_USER_SUCCESS':

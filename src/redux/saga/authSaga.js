@@ -1,6 +1,11 @@
 import {put, takeLatest} from 'redux-saga/effects';
 import axios from 'axios';
-import {saveToken, removeToken} from '../../components/loginFunct';
+import {
+  saveToken,
+  removeToken,
+  saveUserId,
+  removeUserId,
+} from '../../components/loginFunct';
 
 function* Login(action) {
   try {
@@ -12,6 +17,7 @@ function* Login(action) {
     });
     console.log('+++++++>', resLogin.data);
     yield saveToken(resLogin.data.token);
+    yield saveUserId(resLogin.data._id);
     yield put({type: 'LOGIN_SUCCESS'});
     console.log('login sukses');
   } catch (err) {
@@ -23,6 +29,7 @@ function* Login(action) {
 function* logout() {
   try {
     yield removeToken();
+    yield removeUserId();
     console.log('telah logout');
   } catch (err) {
     console.log(err);
