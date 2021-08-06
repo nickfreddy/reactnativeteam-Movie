@@ -4,6 +4,7 @@ import movie from './Movie';
 import modal from './modal';
 import AllRev from './AllrevReducer';
 import auth from './auth';
+import User from './UserReducer';
 
 export default combineReducers({
   genre,
@@ -11,4 +12,5 @@ export default combineReducers({
   modal,
   AllRev,
   auth,
+  User,
 });
