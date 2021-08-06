@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const UserReviews = () => {
+const UserReviews = props => {
   return (
     <View>
       <TouchableWithoutFeedback>
@@ -21,22 +21,19 @@ const UserReviews = () => {
                 width: 80,
                 borderRadius: 15,
               }}
-              source={require('../components/Tita.png')}
+              source={{uri: props.photo}}
             />
             <View style={{marginLeft: 10}}>
               <View>
                 <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                  Legend of Heroes(2006)
+                  {props.movieTitle}
                 </Text>
-                <Text> Reviewed February 15,2022</Text>
+                <Text> Reviewed on : {props.createDate}</Text>
                 <View style={{flexDirection: 'row'}}>
                   <AntDesign name="star" size={18} color="gold" />
                   <View style={{flexDirection: 'row'}}>
-                    <Text style={{fontWeight: 'bold'}}> 9</Text>
-                    <Text>/10</Text>
-                    <Text style={{fontWeight: 'bold', marginLeft: 7}}>
-                      Great
-                    </Text>
+                    <Text style={{fontWeight: 'bold'}}> {props.rating}</Text>
+                    <Text>/5</Text>
                   </View>
                 </View>
               </View>
@@ -52,10 +49,7 @@ const UserReviews = () => {
             </View>
           </View>
           <Text style={{marginTop: 10, marginLeft: 10, fontWeight: 'bold'}}>
-            This is the title comment
-          </Text>
-          <Text style={{marginTop: 10, marginLeft: 10}}>
-            This is the comments
+            {props.comment}
           </Text>
         </View>
       </TouchableWithoutFeedback>
