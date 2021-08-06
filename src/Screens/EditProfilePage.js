@@ -6,8 +6,13 @@ import PassInput from '../components/PassInput';
 import ProfilePic from '../components/ProfilePic';
 import Button from '../components/Button';
 import HeaderEdit from '../components/HeaderEdit';
+import { removeToken } from '../components/loginFunct';
+import { useDispatch, useSelector } from 'react-redux';
 
 const EditProfilePage = props => {
+  const dispatch = useDispatch()
+  const logedIn = useSelector(state => state.auth.isLoggedIn)
+
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderEdit />
@@ -25,7 +30,11 @@ const EditProfilePage = props => {
         style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
         <Button
           title="LOGOUT"
-          onPress={() => props.navigation.navigate('LoginStack')}
+          onPress={ async() => {
+            await removeToken()
+            dispatch({type: 'LOGOUT'})
+            props.navigation.navigate("LoginStack")
+          }}
         />
       </View>
     </View>

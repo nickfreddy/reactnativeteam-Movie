@@ -30,7 +30,7 @@ const AppStack = props => {
 
   return (
     <Stack.Navigator headerMode="none">
-      {token ? (
+      {props.verify || token ? (
         <Stack.Screen name="MainNavigator" component={MainNavigator} />
       ) : (
         <Stack.Screen name="LoginStack" component={LoginStack} />
