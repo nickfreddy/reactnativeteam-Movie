@@ -13,11 +13,22 @@ export async function getToken() {
   return await AsyncStorage.getItem('TOKEN');
 }
 
+export async function getUserId() {
+  return await AsyncStorage.getItem('USER_ID');
+}
+
 export async function saveToken(token) {
   AsyncStorage.setItem('TOKEN', token);
 }
 
+export async function saveUserId(_id) {
+  AsyncStorage.setItem('USER_ID', _id);
+}
+
 export async function removeToken() {
   AsyncStorage.removeItem('TOKEN');
-  //hae
+}
+
+export async function removeUserId() {
+  AsyncStorage.removeItem('USER_ID');
 }

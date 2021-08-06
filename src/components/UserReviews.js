@@ -1,46 +1,10 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useNavigation} from '@react-navigation/native';
 
-const UserReview = props => {
-  const navigation = useNavigation();
+const UserReviews = () => {
   return (
     <View>
-      <View
-        style={{
-          width: Dimensions.get('screen').width,
-          flexDirection: 'row',
-          backgroundColor: '#325288',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingVertical: 10,
-          paddingHorizontal: 10,
-        }}>
-        <View style={{marginLeft: 10, fontSize: 16}}>
-          <Text style={{color: 'white', fontSize: 20}}>Reviewer :</Text>
-          <Text style={{color: 'white', fontSize: 16}}>
-            Kreisler(Kreisler57@yahoo.com)
-          </Text>
-        </View>
-        <View style={{left: 0}}>
-          <TouchableOpacity>
-            <AntDesign
-              name="user"
-              size={35}
-              color="white"
-              onPress={() => navigation.navigate('EditProfile')}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
       <TouchableWithoutFeedback>
         <View
           style={{
@@ -99,4 +63,4 @@ const UserReview = props => {
   );
 };
 
-export default UserReview;
+export default UserReviews;
