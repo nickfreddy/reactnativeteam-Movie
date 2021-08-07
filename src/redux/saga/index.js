@@ -5,5 +5,5 @@ import authSaga from './authSaga';
 import UserSaga from './UserSaga';
 
 export default function* rootSagas() {
-  yield all([movieSaga(), AllRevSaga(), authSaga(), UserSaga()]);
+  yield all([movieSaga(), AllRevSaga(), authSaga(), UserSaga(),]);
 }

@@ -12,6 +12,8 @@ import {Rating, AirbnbRating} from 'react-native-ratings';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const NewModal = (props) => {
+  const [commentInput, setCommentInput] = useState('')
+
   return (
       <Modal visible={props.modalState} transparent={true} animationType="slide">
         <View style={styles.modalBackground}>
@@ -32,10 +34,6 @@ const NewModal = (props) => {
               </View>
             </View>
             <TextInput
-              style={styles.inputBox}
-              placeholder="Title"
-            />
-            <TextInput
               style={{
                 ...styles.inputBox,
                 textAlignVertical: 'top',
@@ -43,6 +41,8 @@ const NewModal = (props) => {
               multiline={true}
               numberOfLines={5}
               placeholder="Comment here"
+              onChangeText={(text) => setCommentInput(text)}
+              value={commentInput}
             />
             <View style={{margin: 20, width: 150}}>
               <TouchableOpacity

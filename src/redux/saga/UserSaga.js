@@ -11,7 +11,7 @@ function* dataUsers(action) {
       yield axios.get(`https://demovie.gabatch13.my.id/users/${resUserId}
     `);
     //console.log('++++>', resUserId);
-    //console.log('===>', resdataUsers.data);
+    console.log('===>', resdataUsers.data);
     yield put({type: 'GET_USER_SUCCESS', data: resdataUsers.data});
     console.log('selesai');
   } catch (err) {

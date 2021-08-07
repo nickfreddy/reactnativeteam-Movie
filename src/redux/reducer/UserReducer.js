@@ -1,5 +1,4 @@
 const initialState = {
-  userId: '',
   userData: [],
   userDetails: {},
 };

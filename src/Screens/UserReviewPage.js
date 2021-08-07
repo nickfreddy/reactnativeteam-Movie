@@ -8,7 +8,11 @@ import UserReviews from '../components/UserReviews';
 const UserReviewPage = props => {
   const dispatch = useDispatch();
   const user_redux = useSelector(state => state.User.userData);
-  console.log(user_redux.reviews);
+  const userId = useSelector(state => state.User.userId)
+  const token = useSelector(state => state.User.token)
+  console.log(user_redux);
+  console.log(userId)
+  console.log('token', token)
 
   const renderUserRev = ({item, index}) => {
     if (index !== 5) {
