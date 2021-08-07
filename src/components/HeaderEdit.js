@@ -13,6 +13,7 @@ const HeaderEdit = props => {
         height: 62,
         alignItems: 'center',
         padding: 10,
+        justifyContent:'space-between'
       }}>
       <AntDesign
         name="close"
@@ -23,8 +24,13 @@ const HeaderEdit = props => {
       <Text style={{fontSize: 25, color: 'white', marginLeft: 10}}>
         Edit Profile
       </Text>
-      <View style={{position: 'absolute', left: 360}}>
-        <AntDesign name="check" size={23} color="white" />
+      <View>
+        <AntDesign
+          name="check"
+          size={23}
+          color="white"
+          onPress={() => props.onPress()}
+        />
       </View>
     </View>
   );

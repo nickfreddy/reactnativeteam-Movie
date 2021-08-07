@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
+import {View, Text, TouchableWithoutFeedback, Image, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment'
 
@@ -39,13 +39,17 @@ const UserReviews = props => {
                 </View>
               </View>
               <View style={{flexDirection: 'row', marginTop: 20}}>
-                <AntDesign
-                  name="edit"
-                  size={25}
-                  color="gold"
-                  style={{marginRight: 20}}
-                />
-                <AntDesign name="delete" size={25} color="gold" />
+                <TouchableOpacity onPress={() => props.modalShow()}>
+                  <AntDesign
+                    name="edit"
+                    size={25}
+                    color="gold"
+                    style={{marginRight: 20}}
+                  />
+                </TouchableOpacity>
+                <TouchableWithoutFeedback onPress={() => props.onPressDelete()}>
+                  <AntDesign name="delete" size={25} color="gold" />
+                </TouchableWithoutFeedback>
               </View>
             </View>
           </View>

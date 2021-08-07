@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import TxtInput from '../components/TxtInput';
@@ -6,7 +6,18 @@ import PassInput from '../components/PassInput';
 import ProfilePic from '../components/ProfilePic';
 import Button from '../components/Button';
 
-const ProfilePage = (props) => {
+const ProfilePage = props => {
+  // const [username, setUsername] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  // handleUpdateData = () => {
+  //   newUpdateData={
+  //     username,
+  //     email,
+  //     password,
+  //     photo,
+  //   }
+  // }
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <View
@@ -31,10 +42,17 @@ const ProfilePage = (props) => {
           <AntDesign name="edit" size={25} color="gold" />
         </View>
       </View>
-      <TxtInput placeholder="Full Name" />
-      <TxtInput placeholder="Nickname" />
-      <TxtInput placeholder="Email" />
-      <PassInput />
+      <TxtInput
+        placeholder="Username"
+        input={text => setUsername(text)}
+        value={username}
+      />
+      <TxtInput
+        placeholder="Email"
+        input={text => setEmail(text)}
+        value={email}
+      />
+      <PassInput input={text => setEmail(text)} value={password} />
       <View
         style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
         <Button title="LOGOUT" />

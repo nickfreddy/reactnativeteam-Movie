@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator} from 'react-native';
 
 import Genre from '../components/Genre';
@@ -12,19 +12,32 @@ import {getToken} from '../components/loginFunct';
 
 const HomePage = props => {
   const dispatch = useDispatch();
-  const modal_redux = useSelector(state => state.modal.modalState);
+  const modal_redux = useSelector(state => state.review.modalState);
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
   const isloading = useSelector(state => state.movie.loading)
-  console.log('ini redux movie', movies_redux)
+  const [commentInput, setCommentInput] = useState('')
+  const [rating, setRating] = useState(0)
+  // const movieIdModal = useSelector(state => state.review.movieIdModal)
+  // console.log('ini redux movie', movies_redux)
+  // console.log('==>', movieIdModal)
 
   useEffect(() => {
     dispatch({type: 'GET_DATA'})
     dispatch({type: 'GET_USER'})
   }, [])
 
-  const openModal = () => {
-    dispatch({type: 'OPEN_MODAL'});
+  
+  const handleComment = () => {
+    let newPost = {
+      rating,
+      comment: commentInput
+    }
+    dispatch({type: 'POST_COMMENT', dataPost: newPost})
+  }
+
+  const openModal = (data) => {
+    dispatch({type: 'OPEN_MODAL', movieId: data._id});
   };
 
   const closeModal = () => {
@@ -45,7 +58,7 @@ const HomePage = props => {
           overview={item.synopsis}
           rating={item.averageRating === null ? "-" : item.averageRating}
           posterPath={item.poster}
-          modalShow={openModal}
+          modalShow={() => openModal(item)}
           onPress={() => navigateDetails(item)}
         />
       );
@@ -58,6 +71,14 @@ const HomePage = props => {
           modalState={modal_redux}
           onSubmitModal={closeModal}
           modalClose={closeModal}
+          ratingHandler={(input) => setRating(input)}
+          commentInput={(text) => setCommentInput(text)}
+          value={commentInput}
+          handleComment={() => handleComment()}
+          onPressTrash={() => {
+            setCommentInput('')
+            closeModal()
+          }}
         />
         <SearchBox />
         <Genre />

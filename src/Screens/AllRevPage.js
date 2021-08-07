@@ -11,7 +11,7 @@ const AllReviewPage = props => {
   const dispatch = useDispatch();
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
   const loading = useSelector(state => state.AllRev.isLoading)
-  console.log('===>', AllRev_redux)
+  // console.log('===>', AllRev_redux)
   const renderAllRev = ({item, index}) => {
     if (index !== 10) {
       return (
