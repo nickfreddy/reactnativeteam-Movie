@@ -24,7 +24,12 @@ const HeaderEdit = props => {
         Edit Profile
       </Text>
       <View style={{position: 'absolute', left: 360}}>
-        <AntDesign name="check" size={23} color="white" />
+        <AntDesign
+          name="check"
+          size={23}
+          color="white"
+          onPress={() => props.onPress()}
+        />
       </View>
     </View>
   );

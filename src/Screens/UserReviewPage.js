@@ -8,7 +8,7 @@ import UserReviews from '../components/UserReviews';
 const UserReviewPage = props => {
   const dispatch = useDispatch();
   const user_redux = useSelector(state => state.User.userData);
-  console.log(user_redux.reviews);
+  //console.log(user_redux.reviews);
 
   const renderUserRev = ({item, index}) => {
     if (index !== 5) {
