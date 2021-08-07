@@ -6,12 +6,17 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
-  StyleSheet
+  StyleSheet,
+  ActivityIndicator
 } from 'react-native';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useDispatch, useSelector } from 'react-redux';
 
 const NewModal = (props) => {
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state.review.isLoading)
+  
   return (
       <Modal visible={props.modalState} transparent={true} animationType="slide">
         <View style={styles.modalBackground}>
@@ -28,13 +33,10 @@ const NewModal = (props) => {
                   showRating
                   tintColor="#F4EEE8"
                   ratingTextColor="black"
+                  onFinishRating={props.ratingHandler}
                 />
               </View>
             </View>
-            <TextInput
-              style={styles.inputBox}
-              placeholder="Title"
-            />
             <TextInput
               style={{
                 ...styles.inputBox,
@@ -43,13 +45,19 @@ const NewModal = (props) => {
               multiline={true}
               numberOfLines={5}
               placeholder="Comment here"
+              onChangeText={props.commentInput}
+              value={props.value}
             />
             <View style={{margin: 20, width: 150}}>
-              <TouchableOpacity
-                onPress={() => props.onSubmitModal()}
-                style={styles.modalButton}>
-                <Text style={{color: 'white', fontWeight: 'bold'}}>Submit</Text>
-              </TouchableOpacity>
+              {loading 
+              ? <ActivityIndicator size='large' color='blue' /> 
+              : <TouchableOpacity
+                  onPress={() => props.handleComment()}
+                  style={styles.modalButton}>
+                  <Text style={{color: 'white', fontWeight: 'bold'}}>Submit</Text>
+                </TouchableOpacity>
+            }
+              
               <View
                 style={{
                   justifyContent: 'center',
@@ -61,7 +69,7 @@ const NewModal = (props) => {
                   name="delete"
                   size={23}
                   color="black"
-                  onPress={() => props.modalClose()}
+                  onPress={() => props.onPressTrash()}
                 />
               </View>
             </View>

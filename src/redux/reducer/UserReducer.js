@@ -1,8 +1,8 @@
 const initialState = {
-  userId: '',
   userData: [],
   userDetails: {},
   updateUser: {},
+  userId:''
 };
 
 const User = (state = initialState, action) => {
