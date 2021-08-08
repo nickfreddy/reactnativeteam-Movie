@@ -35,6 +35,7 @@ const HomePage = props => {
       comment: commentInput
     }
     dispatch({type: 'POST_COMMENT', dataPost: newPost})
+    setCommentInput('')
     dispatch({type: 'CLOSE_MODAL'})
   }
 

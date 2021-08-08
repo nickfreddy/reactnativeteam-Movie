@@ -26,7 +26,7 @@ export async function saveUserId(_id) {
 }
 
 export async function removeToken() {
-  AsyncStorage.removeItem('TOKEN');
+  await AsyncStorage.removeItem('TOKEN');
 }
 
 export async function removeUserId() {
