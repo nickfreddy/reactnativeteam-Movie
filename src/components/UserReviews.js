@@ -1,7 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableWithoutFeedback, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import moment from 'moment'
+import moment from 'moment';
 
 const UserReviews = props => {
   return (
@@ -14,6 +20,7 @@ const UserReviews = props => {
             borderRadius: 15,
             padding: 8,
             backgroundColor: 'white',
+            flex: 1,
           }}>
           <View style={{flexDirection: 'row'}}>
             <Image
@@ -24,12 +31,17 @@ const UserReviews = props => {
               }}
               source={{uri: props.photo}}
             />
-            <View style={{marginLeft: 10}}>
+            <View style={{marginLeft: 10, flex: 1}}>
               <View>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                <Text
+                  style={{fontWeight: 'bold', fontSize: 20}}
+                  numberOfLines={1}>
                   {props.movieTitle}
                 </Text>
-                <Text> Reviewed on : {moment(props.createDate).format('MMM Do YYYY')}</Text>
+                <Text>
+                  {' '}
+                  Reviewed on : {moment(props.createDate).format('MMM Do YYYY')}
+                </Text>
                 <View style={{flexDirection: 'row'}}>
                   <AntDesign name="star" size={18} color="gold" />
                   <View style={{flexDirection: 'row'}}>

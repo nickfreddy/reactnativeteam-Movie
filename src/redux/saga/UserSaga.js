@@ -55,10 +55,37 @@ function* updateDataUser(action) {
   }
 }
 
+function* updatePhotoUser(action) {
+  try {
+    const resUserId = yield getUserId();
+    const headers = yield getHeaders();
+    const data = new FormData();
+    data.append('photo', {
+      uri: action.uri,
+      name: action.name,
+      type: action.type,
+    });
+    const resUpPhotoUser = yield axios({
+      method: 'PUT',
+      url: `https://demovie.gabatch13.my.id/users/${resUserId}`,
+      headers,
+      data: action.data,
+    });
+    console.log('upload sukses', resUpPhotoUser.data);
+    yield put({
+      type: 'UPDATE_PHOTO_SUCCESS',
+      dataUpdatePhoto: resUpPhotoUser.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* UserSaga() {
   yield takeLatest('GET_USER', dataUsers);
   yield takeLatest('GET_USER_DETAILS', dataUsersDetails);
   yield takeLatest('GET_UPDATE', updateDataUser);
+  yield takeLatest('UPDATE_PHOTO', updatePhotoUser);
 }
 
 export default UserSaga;
