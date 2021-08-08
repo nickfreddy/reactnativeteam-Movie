@@ -8,7 +8,7 @@ import HeaderEdit from '../components/HeaderEdit';
 import {removeToken} from '../components/loginFunct';
 import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {getUserId, getHeaders} from '../components/loginFunct';
+import DesInput from '../components/DesInput';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
@@ -96,7 +96,7 @@ const EditProfilePage = props => {
         input={text => setEmail(text)}
         value={email}
       />
-      <TxtInput
+      <DesInput
         title="description"
         BGcolor="#114E60"
         input={text => setDescription(text)}

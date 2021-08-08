@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TextInput, Text} from 'react-native';
 
-const TxtInput = props => {
+const DesInput = props => {
   return (
     <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
       <TextInput
@@ -12,15 +12,16 @@ const TxtInput = props => {
           width: '80%',
           color: 'white',
           paddingLeft: 10,
+          textAlignVertical: 'top',
         }}
         onChangeText={props.input}
         value={props.value}
-        numberOfLines={props.numberOfLines}
+        numberOfLines={5}
       />
       <Text
         style={{
           position: 'absolute',
-          bottom: 42,
+          bottom: 99,
           left: 50,
           color: 'white',
           backgroundColor: props.BGcolor,
@@ -33,4 +34,4 @@ const TxtInput = props => {
   );
 };
 
-export default TxtInput;
+export default DesInput;
