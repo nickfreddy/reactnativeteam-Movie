@@ -71,10 +71,10 @@ const EditProfilePage = props => {
     );
   };
 
-  useEffect(() => {
-    dispatch({type: 'GET_UPDATE'});
-    dispatch({type: 'UPDATE_PHOTO'});
-  }, [isLoading]);
+  // useEffect(() => {
+  //   dispatch({type: 'GET_UPDATE'});
+  //   dispatch({type: 'UPDATE_PHOTO'});
+  // }, [isLoading]);
 
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
