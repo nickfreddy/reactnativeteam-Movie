@@ -47,7 +47,7 @@ function* updateDataUser(action) {
     });
     console.log('update sukses', resUpDetailUser.data);
     yield put({
-      type: 'UPDATE_USER',
+      type: 'UPDATE_USER_SUCCESS',
       dataUpdateUser: resUpDetailUser.data,
     });
   } catch (err) {
