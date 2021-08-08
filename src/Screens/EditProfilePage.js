@@ -105,14 +105,14 @@ const EditProfilePage = props => {
 
       <View
         style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
-        <Button
+        {/* <Button
           title="LOGOUT"
           onPress={async () => {
             dispatch({type: 'LOGOUT'});
             await removeToken();
             props.navigation.navigate('LoginStack', {screen: 'Login'});
           }}
-        />
+        /> */}
       </View>
     </View>
   );

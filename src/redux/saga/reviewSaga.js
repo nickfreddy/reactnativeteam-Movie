@@ -53,7 +53,7 @@ function* editPost(action) {
     const movieId = yield select(state => state.review.movieIdModal);
     const reviewId = yield select(state => state.review.reviewIdModal)
     try {
-        console.log('mulai post')
+        console.log('mulai edit')
         const headers = yield getHeaders();
         console.log(`https://demovie.gabatch13.my.id/movies/${movieId}/reviews/${reviewId}`)
         const resPostComment = yield axios({

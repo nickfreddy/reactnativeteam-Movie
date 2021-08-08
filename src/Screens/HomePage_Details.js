@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, ScrollView, ImageBackground } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View, Dimensions, ScrollView, ImageBackground } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import MovieFooter from '../components/MovieFooter';
 import LinearGradient from 'react-native-linear-gradient'
 import Trailer from '../components/Trailer';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import moment from 'moment';
+
+
+import CommentCard from '../components/CommentCard';
 
 
 const HomePage_Details = (props) => {
@@ -59,24 +60,16 @@ const HomePage_Details = (props) => {
                                 {(movieDetails_redux.reviews.length > 0) 
                                     ? movieDetails_redux.reviews.map((item) => {
                                         return (
-                                        <View key={item._id} style={styles.commentCard}>
-                                            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-                                                <View style={{flexDirection:'row', alignItems:'center'}}>
-                                                    <Image source={{uri: item.user_id.photo}} 
-                                                    style={{width:50, height:50, borderRadius:30}}
-                                                    />
-                                                    <View>
-                                                        <Text> username: {item.user_id.username}</Text>
-                                                        <Text> Reviewed {moment(item.createdAt).startOf('day').fromNow()    }</Text>
-                                                    </View> 
-                                                </View>
-                                                <View style={{flexDirection:'row', marginHorizontal:10}}>
-                                                    <Text style={{fontSize:21}}>{item.rating}</Text>
-                                                    <AntDesign name="star" size={25} color="gold" />
-                                                </View>
-                                            </View>
-                                            <Text style={{margin:10}}>{item.comment}</Text>
-                                        </View>) 
+                                            <CommentCard 
+                                                key={item._id}
+                                                keyIndex={item._id}
+                                                photo={item.user_id.photo}
+                                                username={item.user_id.username}
+                                                updateTime={item.createdAt}
+                                                comment={item.comment}
+                                                rating={item.rating}
+                                            />
+                                        ) 
                                     }) 
                                     : <Text style={{color:'white'}}>No one has review this movie</Text>
 
@@ -120,16 +113,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         height: '10%'
     },
-    commentContainer : {
-        alignItems: 'center',
-        justifyContent:'center'
-    },
-    commentCard : {
-        width : widthScreen - (0.1 * widthScreen),
-        height: 100,
-        backgroundColor:'white',
-        marginVertical:20,
-        borderRadius:20,
-    }
+    
     
 })
