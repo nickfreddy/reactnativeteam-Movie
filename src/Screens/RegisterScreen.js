@@ -1,60 +1,63 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableOpacity,
-  Image
+  Image,
+  ActivityIndicator,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Button from '../components/Button';
 import PassInput from '../components/PassInput';
 import TxtInput from '../components/TxtInput';
 
 const RegisterScreen = props => {
-  const dispatch = useDispatch()
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const loading = useSelector(state => state.auth.isLoading)
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const loading = useSelector(state => state.auth.isLoading);
   // console.log('err dari register', errMessage)
   const handleRegister = () => {
     let newData = {
       username,
       email,
-      password
-    }
-    dispatch({type: 'REGISTER', dataReg: newData})
-  }
-  
+      password,
+    };
+    dispatch({type: 'REGISTER', dataReg: newData});
+  };
+
   return (
     <View style={styles.backgroundBase}>
       <Image source={require('../assets/LogoBlue.jpg')} style={styles.image} />
       <View style={styles.contentContainer}>
         <View style={styles.containerInput}>
-          <TxtInput 
+          <TxtInput
             title="Username"
-            input={(text) => setUsername(text)}
+            input={text => setUsername(text)}
             value={username}
-            BGcolor="#325288" 
+            BGcolor="#325288"
           />
-          <TxtInput 
+          <TxtInput
             title="Email"
-            input={(text) => setEmail(text)}
+            input={text => setEmail(text)}
             value={email}
-            BGcolor="#325288" 
+            BGcolor="#325288"
           />
-          <PassInput 
+          <PassInput
             title="Password"
-            input={(text) => setPassword(text)}
+            input={text => setPassword(text)}
             value={password}
-            BGcolor="#325288" />
+            BGcolor="#325288"
+          />
         </View>
-        {(!loading) 
-        ? <Button title="Login" onPress={() => handleRegister()} />
-        : <ActivityIndicator color='orange' size='large'/> 
-        }
+        {!loading ? (
+          <Button title="Login" onPress={() => handleRegister()} />
+        ) : (
+          <ActivityIndicator color="orange" size="large" />
+        )}
         <View
           style={{
             flexDirection: 'row',
@@ -95,6 +98,6 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
-    marginBottom:20
+    marginBottom: 20,
   },
 });
