@@ -33,9 +33,12 @@ function* logout() {
   try {
     yield removeToken();
     yield removeUserId();
+    yield put({type:'LOG_OUT_SUCCESS'})
     console.log('telah logout');
   } catch (err) {
     console.log(err);
+    yield put({type:'LOG_OUT_FAILED'})
+    console.log('logout fail')
   }
 }
 

@@ -30,6 +30,17 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        ...state,
+        isLoggedIn: false,
+        isLoading: false
+      }
+    case 'LOGOUT_FAILED' :
+      return {
+        ...state,
+        isLoading: false
+      }
     case 'VERIFY_TOKEN':
       return {
         ...state,
