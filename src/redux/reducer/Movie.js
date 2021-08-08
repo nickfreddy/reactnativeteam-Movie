@@ -1,8 +1,10 @@
 const initialState =  {
     loading: false,
+    loadingMore: false,
     movieId : '',
     movieData : [],
-    movieDetails : {}
+    movieDetails : {},
+    pageCount : 0
 }
 
 const movie = (state = initialState, action) => {
@@ -64,6 +66,24 @@ const movie = (state = initialState, action) => {
                 movieData : [],
                 movieDetails : {}
             };
+        case 'GET_MORE_MOVIE':
+            return {
+                ...state,
+                loadingMore: true,
+                pageCount: state.pageCount + 1,
+            }
+        case 'GET_MORE_MOVIE_SUCCESS':
+            return {
+                ...state,
+                movieData: [...state.movieData, ...action.data],
+                loadingMore: false,
+            }
+        case 'GET_MORE_MOVIE_FAILED':
+            return {
+                ...state,
+                pageCount: state.pageCount - 1,
+                loadingMore: false
+            }
         default :
             return state
     }

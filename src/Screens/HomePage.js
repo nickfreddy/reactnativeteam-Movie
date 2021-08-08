@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator, ScrollView} from 'react-native';
 
 import Genre from '../components/Genre';
 import Movies from '../components/Movies';
@@ -16,7 +16,7 @@ const HomePage = props => {
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
   const isloading = useSelector(state => state.movie.loading)
-  const modalLoading = useSelector(state => state.review.isLoading)
+  const isLoadingMore = useSelector(state => state.movie.loadingMore)
   const [commentInput, setCommentInput] = useState('')
   const [rating, setRating] = useState(0)
   // const movieIdModal = useSelector(state => state.review.movieIdModal)
@@ -26,8 +26,8 @@ const HomePage = props => {
   useEffect(() => {
     dispatch({type: 'GET_DATA'})
     dispatch({type: 'GET_USER'})
-  }, [modalLoading])
-
+  }, [])
+  // modalLoading
   
   const handleComment = () => {
     let newPost = {
@@ -53,7 +53,39 @@ const HomePage = props => {
     props.navigation.navigate('MovieDetails', {movieId: data._id});
   };
 
-  const renderItem = ({item, index}, headline) => {
+  const getMoreData = () => {
+    dispatch({type: 'GET_MORE_MOVIE'})
+  }
+  const renderItem = ({item, index}, data) => {
+    let pos = 0
+    // //basecase
+    // function baseCase(pos) {
+    //   if(pos > data.length) {
+    //     return (
+    //       <View><Text>MORE</Text></View>
+    //     )
+    //   } else {
+    //     return renderItem({item, index}, data, measure + 1)
+    //   }
+    // }
+
+    // const result = (item) => {
+    //   return (
+    //     <Movies
+    //       title={item.title}
+    //       genre={item.genres}
+    //       releaseYear={item.release_year}
+    //       overview={item.synopsis}
+    //       rating={item.averageRating === null ? "-" : item.averageRating}
+    //       posterPath={item.poster}
+    //       modalShow={() => openModal(item)}
+    //       onPress={() => navigateDetails(item)}
+    //     />
+    //   );
+    // }
+    
+    if(pos < data.length) {
+      pos = pos + 1
       return (
         <Movies
           title={item.title}
@@ -66,6 +98,11 @@ const HomePage = props => {
           onPress={() => navigateDetails(item)}
         />
       );
+    } else {
+      return(
+              <View><Text>MORE</Text></View>
+            )
+    }
   };
 
   return (
@@ -86,13 +123,57 @@ const HomePage = props => {
         <View style={{padding: 10, marginHorizontal: 10}}>
           <Text style={styles.headerText}>Hot{`${(headline_redux === '') ? " " : " " + headline_redux+" " }`}Movies</Text>
         </View>
-        {isloading ? <ActivityIndicator size='large' color='blue' /> : 
-        <FlatList
-        data={movies_redux}
-        keyExtractor={(elem, i) => i}
-        renderItem={renderItem}
-        />
-      }
+        <ScrollView>
+        {isloading 
+        ? <ActivityIndicator size='large' color='blue' /> 
+        : movies_redux.map((item, index) => {
+          if(index + 1 > movies_redux.length -1) {
+            if(isLoadingMore) {
+              return (
+                <ActivityIndicator size='large' color='blue' />
+              )
+            }
+            else {
+              return (
+                <TouchableOpacity key={index} style={{
+                  alignSelf:'center',
+                  alignItems:'center', 
+                  justifyContent:'center',
+                  backgroundColor:'orange',
+                  width: '80%',
+                  padding:10,
+                  borderRadius:20
+                  }}
+                  onPress={()=> getMoreData()}
+                  >
+                  <Text style={{color:'white'}}>MORE</Text>
+                </TouchableOpacity>
+                )
+            };
+          } else {
+            return (
+              <View key={item.id}>
+                <Movies
+                title={item.title}
+                genre={item.genres}
+                releaseYear={item.release_year}
+                overview={item.synopsis}
+                rating={item.averageRating === null ? "-" : item.averageRating}
+                posterPath={item.poster}
+                modalShow={() => openModal(item)}
+                onPress={() => navigateDetails(item)}
+                />
+              </View>
+              )
+            };
+            })
+            // <FlatList
+            // data={movies_redux}
+            // keyExtractor={(elem, i) => i}
+            // renderItem={renderItem(data)}
+            // />
+          }
+        </ScrollView>
         
         
       </View>
