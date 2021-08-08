@@ -1,4 +1,4 @@
-import {put, takeLatest} from 'redux-saga/effects';
+import {call, put, takeLatest} from 'redux-saga/effects';
 import axios from 'axios';
 import {
   saveToken,
@@ -31,8 +31,8 @@ function* Login(action) {
 
 function* logout() {
   try {
-    yield removeToken();
-    yield removeUserId();
+    yield call(removeToken);
+    yield call(removeUserId);
     yield put({type:'LOG_OUT_SUCCESS'})
     console.log('telah logout');
   } catch (err) {

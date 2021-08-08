@@ -31,8 +31,6 @@ const EditProfilePage = props => {
   const [image, setImage] = useState(
     'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
   );
-  const [rawImage, setRawImage] = useState();
-  const logedIn = useSelector(state => state.auth.isLoggedIn);
 
   const handleUpload = () => {
     launchImageLibrary(options, response => {
@@ -47,13 +45,12 @@ const EditProfilePage = props => {
         let source = response.assets[0];
         console.log('response source =', source);
         setImage(source.uri);
-        setRawImage(source);
         const uploadImage = {
           uri: source.uri,
           name: source.fileName,
-          type: source.type,
+          type: source.type,  
         };
-        dispatch({type: 'UPDATE_PHOTO', data: uploadImage});
+        // dispatch({type: 'UPDATE_PHOTO', data: uploadImage});
       }
     });
   };
@@ -66,7 +63,7 @@ const EditProfilePage = props => {
       photo: image,
     };
     dispatch(
-      {type: 'GET_UPDATE', dataPost: newUpdateData},
+      {type: 'UPDATE_USER', dataPost: newUpdateData},
       {type: 'UPDATE_PHOTO'},
     );
   };
@@ -82,7 +79,10 @@ const EditProfilePage = props => {
         onPress={() => {
           handleUpdate();
           Alert.alert('Profile Changed', 'Your Profile has been updated', [
-            {text: 'Confirm', onPress: () => navigation.navigate('UserReview')},
+            {text: 'Confirm', onPress: () => {
+              dispatch({type:'GET_USER'})
+              navigation.navigate('UserReview')
+            }},
           ]);
         }}
       />
@@ -110,18 +110,6 @@ const EditProfilePage = props => {
         input={text => setDescription(text)}
         value={description}
       />
-
-      <View
-        style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
-        {/* <Button
-          title="LOGOUT"
-          onPress={async () => {
-            dispatch({type: 'LOGOUT'});
-            await removeToken();
-            props.navigation.navigate('LoginStack', {screen: 'Login'});
-          }}
-        /> */}
-      </View>
     </View>
   );
 };

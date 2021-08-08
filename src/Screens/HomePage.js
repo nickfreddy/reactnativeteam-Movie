@@ -152,7 +152,7 @@ const HomePage = props => {
             };
           } else {
             return (
-              <View key={item.id}>
+              <View key={index}>
                 <Movies
                 title={item.title}
                 genre={item.genres}

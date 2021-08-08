@@ -19,6 +19,7 @@ import NewModal from '../components/NewModal';
 const UserReviewPage = props => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.review.isLoading);
+  const isLoadingUser = useSelector(state => state.User.loading)
   const user_redux = useSelector(state => state.User.userData);
   const modalEdit_redux = useSelector(state => state.review.modalStateEdit);
   const [commentInput, setCommentInput] = useState('');

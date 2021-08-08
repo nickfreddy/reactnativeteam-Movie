@@ -30,5 +30,5 @@ export async function removeToken() {
 }
 
 export async function removeUserId() {
-  AsyncStorage.removeItem('USER_ID');
+  await AsyncStorage.removeItem('USER_ID');
 }
