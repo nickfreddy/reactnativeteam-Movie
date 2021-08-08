@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import TxtInput from '../components/TxtInput';
-import PassInput from '../components/PassInput';
 import ProfilePic from '../components/ProfilePic';
 import Button from '../components/Button';
 import HeaderEdit from '../components/HeaderEdit';
@@ -18,7 +17,7 @@ const EditProfilePage = props => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [description, setDescription] = useState('');
   const options = {
     title: 'Select Avatar',
     customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
@@ -48,12 +47,12 @@ const EditProfilePage = props => {
         console.log('response source =', source);
         setImage(source.uri);
         setRawImage(source);
-        uploadImage({
+        const uploadImage = {
           uri: source.uri,
           name: source.fileName,
           type: source.type,
-        });
-        //console.log(source);
+        };
+        dispatch({type: 'UPDATE_PHOTO', data: uploadImage});
       }
     });
   };
@@ -62,40 +61,15 @@ const EditProfilePage = props => {
     const newUpdateData = {
       username,
       email,
-      password,
+      description,
       photo: image,
     };
-    dispatch({type: 'GET_UPDATE', dataPost: newUpdateData});
+    dispatch(
+      {type: 'GET_UPDATE', dataPost: newUpdateData},
+      {type: 'UPDATE_PHOTO'},
+    );
   };
 
-  const uploadImage = async image => {
-    const resUserId = await getUserId();
-    const headers = await getHeaders();
-    console.log(resUserId);
-    const data = new FormData(); // Make Multipart Form-Data body
-    data.append('photo', {
-      uri: image.uri,
-      name: image.name,
-      type: image.type,
-    }); // Insert data / image to the data body
-    await axios({
-      method: 'PUT',
-      url: `https://demovie.gabatch13.my.id/users/${resUserId}`, // link to upload image from your Backend
-      headers,
-      data: data,
-    })
-      .then(res => {
-        // Success Handling
-        console.log(res.data);
-        console.log('Image Uploaded');
-      })
-      .catch(err => {
-        // Error Handling
-        console.error('Error Upload :', err);
-      });
-  };
-
-  // console.log()
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderEdit
@@ -122,12 +96,13 @@ const EditProfilePage = props => {
         input={text => setEmail(text)}
         value={email}
       />
-      <PassInput
-        title="Password"
+      <TxtInput
+        title="description"
         BGcolor="#114E60"
-        input={text => setPassword(text)}
-        value={password}
+        input={text => setDescription(text)}
+        value={description}
       />
+
       <View
         style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
         <Button

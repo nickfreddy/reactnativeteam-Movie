@@ -2,7 +2,8 @@ const initialState = {
   userData: [],
   userDetails: {},
   updateUser: {},
-  userId:''
+  userId: '',
+  updatePhoto: {},
 };
 
 const User = (state = initialState, action) => {
@@ -33,6 +34,16 @@ const User = (state = initialState, action) => {
       return {
         ...state,
         updateUser: action.dataUpdateUser,
+      };
+    case 'UPDATE_PHOTO':
+      return {
+        ...state,
+        userId: action.userId,
+      };
+    case 'UPDATE_PHOTO_SUCCESS':
+      return {
+        ...state,
+        updatePhoto: action.dataUpdatePhoto,
       };
     default:
       return state;
