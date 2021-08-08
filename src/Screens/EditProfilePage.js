@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, TextInput, Alert} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import TxtInput from '../components/TxtInput';
 import ProfilePic from '../components/ProfilePic';
@@ -26,6 +26,7 @@ const EditProfilePage = props => {
       path: 'images',
     },
   };
+  const isLoading = useSelector(state => state.User.loading);
 
   const [image, setImage] = useState(
     'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png',
@@ -70,12 +71,19 @@ const EditProfilePage = props => {
     );
   };
 
+  useEffect(() => {
+    dispatch({type: 'GET_UPDATE'});
+    dispatch({type: 'UPDATE_PHOTO'});
+  }, [isLoading]);
+
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
       <HeaderEdit
         onPress={() => {
           handleUpdate();
-          props.navigation.goBack();
+          Alert.alert('Profile Changed', 'Your Profile has been updated', [
+            {text: 'Confirm', onPress: () => navigation.navigate('UserReview')},
+          ]);
         }}
       />
       <View style={{top: 30, marginBottom: 30}}>
