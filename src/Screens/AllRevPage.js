@@ -41,15 +41,6 @@ const AllReviewPage = props => {
         renderItem={renderAllRev}
         />
       }
-      <View
-        style={{
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
-          flex: 1,
-          margin: 10,
-        }}>
-        <AntDesign name="pluscircle" size={50} color="gold" />
-      </View>
     </View>
   );
 };

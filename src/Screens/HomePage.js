@@ -16,6 +16,7 @@ const HomePage = props => {
   const headline_redux = useSelector(state => state.genre.headline);
   const movies_redux = useSelector(state => state.movie.movieData)
   const isloading = useSelector(state => state.movie.loading)
+  const modalLoading = useSelector(state => state.review.isLoading)
   const [commentInput, setCommentInput] = useState('')
   const [rating, setRating] = useState(0)
   // const movieIdModal = useSelector(state => state.review.movieIdModal)
@@ -25,7 +26,7 @@ const HomePage = props => {
   useEffect(() => {
     dispatch({type: 'GET_DATA'})
     dispatch({type: 'GET_USER'})
-  }, [])
+  }, [modalLoading])
 
   
   const handleComment = () => {
@@ -34,6 +35,8 @@ const HomePage = props => {
       comment: commentInput
     }
     dispatch({type: 'POST_COMMENT', dataPost: newPost})
+    setCommentInput('')
+    dispatch({type: 'CLOSE_MODAL'})
   }
 
   const openModal = (data) => {
@@ -41,6 +44,7 @@ const HomePage = props => {
   };
 
   const closeModal = () => {
+    setCommentInput('')
     dispatch({type: 'CLOSE_MODAL'});
   };
 
@@ -75,10 +79,7 @@ const HomePage = props => {
           commentInput={(text) => setCommentInput(text)}
           value={commentInput}
           handleComment={() => handleComment()}
-          onPressTrash={() => {
-            setCommentInput('')
-            closeModal()
-          }}
+          onPressTrash={() => closeModal()}
         />
         <SearchBox />
         <Genre />

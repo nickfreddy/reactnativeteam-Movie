@@ -2,6 +2,7 @@ const initalState = {
     movieIdModal: '',
     reviewIdModal: '',
     modalState : false,
+    modalStateEdit: false,
     isLoading: false,
     message: ''
 }
@@ -17,7 +18,7 @@ const review = (state = initalState, action) => {
         case "OPEN_MODAL_EDIT" :
             return {
                 ...state,
-                modalState: true,
+                modalStateEdit: true,
                 movieIdModal: action.data.movieId,
                 reviewIdModal: action.data.reviewId
             }
@@ -26,6 +27,13 @@ const review = (state = initalState, action) => {
                 ...state,
                 modalState : false,
                 movieIdModal: ''
+            }
+        case "CLOSE_MODAL_EDIT" :
+            return {
+                ...state,
+                modalStateEdit: false,
+                movieIdModal: '',
+                reviewIdModal: ''
             }
         case "POST_COMMENT":
             return{
