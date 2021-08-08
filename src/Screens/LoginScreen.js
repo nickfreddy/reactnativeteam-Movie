@@ -30,6 +30,8 @@ const LoginScreen = props => {
     props.login(newData);
   };
 
+
+
   return (
     <View style={styles.backgroundBase}>
       <Image source={require('../assets/LogoBlue.jpg')} style={styles.image} />

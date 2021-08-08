@@ -28,6 +28,7 @@ const UserReviewPage = props => {
   // console.log('user detail', user_redux)
 
   useEffect(() => {
+    console.log('mulai review screen');
     dispatch({type: 'GET_USER'});
   }, [isLoading]);
 
@@ -126,10 +127,9 @@ const UserReviewPage = props => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={{...styles.button, backgroundColor: 'dodgerblue'}}
-                onPress={async () => {
+                onPress={() => {
+                  setLogoutModal(false);
                   dispatch({type: 'LOGOUT'});
-                  await removeToken();
-                  props.navigation.navigate('LoginStack');
                 }}>
                 <Text style={{color: 'white'}}>Yes</Text>
               </TouchableOpacity>

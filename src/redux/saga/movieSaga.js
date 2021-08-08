@@ -70,11 +70,28 @@ function* dataMovieSearch(action) {
     }
 }
 
+function* getMoreMovie(action) {
+    const page = yield select(state => state.movie.pageCount)
+    try {
+        console.log('mulai')
+        console.log(`https://demovie.gabatch13.my.id/movies?page=${1 + page}&limit=5`)
+        const resDataMovies = yield axios.get(`https://demovie.gabatch13.my.id/movies?page=${1 + page}&limit=5`)  
+        yield put({type:'GET_MORE_MOVIE_SUCCESS', data: resDataMovies.data.dataMovie})
+        console.log('get success')
+    }
+    catch (err) {
+        console.log(err)
+        yield put({type:'GET_MORE_MOVIE_FAILED', })
+        console.log('get failed')
+    }
+}
+
 function* movieSaga() {
   yield takeLatest('GET_DATA', dataMovies);
   yield takeLatest('GET_MOVIE_DETAILS', dataMoviesDetails);
   yield takeLatest('GET_MOVIE_BY_GENRE', dataMovieGenre);
-  yield takeLatest('GET_MOVIE_BY_SEARCH', dataMovieSearch)
+  yield takeLatest('GET_MOVIE_BY_SEARCH', dataMovieSearch);
+  yield takeLatest('GET_MORE_MOVIE', getMoreMovie)
 }
 
 export default movieSaga;
