@@ -8,8 +8,7 @@ import {useSelector} from 'react-redux';
 const AllReviewPage = props => {
   const dispatch = useDispatch();
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
-  const loading = useSelector(state => state.AllRev.isLoading)
-  console.log(AllRev_redux)
+  const loading = useSelector(state => state.AllRev.isLoading);
   const renderAllRev = ({item, index}) => {
     if (index !== 10) {
       return (
@@ -18,7 +17,11 @@ const AllReviewPage = props => {
           rating={item.rating}
           username={item.user_id.username}
           comment={item.comment}
-          photo={item.user_id.photo === "" ? "https://i1.wp.com/jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png?fit=300%2C300&ssl=1" : item.user_id.photo }
+          photo={
+            item.user_id.photo === ''
+              ? 'https://i1.wp.com/jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png?fit=300%2C300&ssl=1'
+              : item.user_id.photo
+          }
           movieRev={item.movie_id === null ? 'no title' : item.movie_id.title}
           onPress={() => navigateDetails(item)}
         />
@@ -38,18 +41,18 @@ const AllReviewPage = props => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
-      <HeaderReview title="AllReview" />
-      {(loading) 
-        ? <ActivityIndicator size='large' color='blue' style={{flex:1}} />
-        : <FlatList
-        data={AllRev_redux}
-        keyExtractor={(elem, i) => i}
-        renderItem={renderAllRev}
+      <HeaderReview title="All Review" />
+      {loading ? (
+        <ActivityIndicator size="large" color="blue" style={{flex: 1}} />
+      ) : (
+        <FlatList
+          data={AllRev_redux}
+          keyExtractor={(elem, i) => i}
+          renderItem={renderAllRev}
         />
-      }
+      )}
     </View>
   );
 };
 
 export default AllReviewPage;
-

@@ -36,6 +36,7 @@ function* deletePost(action) {
             headers
         })
         yield put({type: 'POST_DELETE_SUCCESS'})
+        yield put({type: 'GET_ALL_REV'})
     }
     catch (err) {
         console.log(err)
@@ -58,6 +59,7 @@ function* editPost(action) {
         yield put({
             type: 'POST_EDIT_SUCCESS',
         });
+        yield put({type: 'GET_ALL_REV'})
     }
     catch(err) {
         console.log(err)

@@ -19,7 +19,7 @@ import NewModal from '../components/NewModal';
 const UserReviewPage = props => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.review.isLoading);
-  const isLoadingUser = useSelector(state => state.User.loading)
+  const isLoadingUser = useSelector(state => state.User.loading);
   const user_redux = useSelector(state => state.User.userData);
   const modalEdit_redux = useSelector(state => state.review.modalStateEdit);
   const [commentInput, setCommentInput] = useState('');
@@ -29,7 +29,6 @@ const UserReviewPage = props => {
   // console.log('user detail', user_redux)
 
   useEffect(() => {
-    console.log('mulai review screen');
     dispatch({type: 'GET_USER'});
   }, [isLoading]);
 
@@ -38,7 +37,7 @@ const UserReviewPage = props => {
       type: 'POST_DELETE',
       data: {reviewId: data._id, movieId: data.movie_id._id},
     });
-    dispatch({type: 'GET_USER'})
+    dispatch({type: 'GET_USER'});
   };
 
   const handleReviewEdit = () => {
@@ -48,7 +47,7 @@ const UserReviewPage = props => {
     };
     dispatch({type: 'POST_EDIT', dataPost: newPost});
     setCommentInput('');
-    dispatch({type: 'GET_USER'})
+    dispatch({type: 'GET_USER'});
     dispatch({type: 'CLOSE_MODAL_EDIT'});
   };
 
@@ -91,6 +90,9 @@ const UserReviewPage = props => {
           borderWidth: 1,
           borderRadius: 8,
         }}>
+        <Text style={{marginTop: 5, marginLeft: 5, fontWeight: 'bold'}}>
+          Description:
+        </Text>
         <Text style={{margin: 5}}>{user_redux.description}</Text>
       </View>
       <NewModal
@@ -103,7 +105,8 @@ const UserReviewPage = props => {
         handleComment={() => handleReviewEdit()}
         onPressTrash={() => closeModal()}
       />
-      {isLoadingUser ? (
+      {isLoadingUser 
+      ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (
         <FlatList
@@ -183,5 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'space-around',
+    //s
   },
 });
