@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/core'
 
@@ -21,11 +20,10 @@ const HomeStack = ({route, navigation}) => {
     return (
         <Stack.Navigator>
             <Stack.Screen name='Home' component={HomePage} options={{headerShown:false}}/>
-            <Stack.Screen name='MovieDetails' component={HomePage_Details} options={{headerShown:true}}/>
+            <Stack.Screen name='MovieDetails' component={HomePage_Details} options={{headerShown:false}}/>
         </Stack.Navigator>
     )
 }
 
 export default HomeStack
 
-const styles = StyleSheet.create({})

@@ -1,36 +1,36 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import MovieFooter from './MovieFooter'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Movies = (props) => {
+
     return (
-        <TouchableOpacity style={styles.container} onPress={() => props.navigateTo()}>
-            <View style={styles.movieContainer}>
-                <View style={styles.movieBox}>
-                    <View style={styles.contentContainer}>
-                        <MaterialCommunityIcon name="movie" size={40} />
+        <TouchableOpacity style={styles.container} onPress={() => props.onPress()}>
+            <View style={styles.topContent}>
+                <Text style={styles.titleText}>{props.title}</Text>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <View style={{flexDirection:'row'}}>
+                        {(props.genre.map((item,index) => 
+                            (index !== props.genre.length - 1) 
+                            ? <Text key={index} style={styles.subTitleText}>{item[0].toUpperCase() + item.substring(1)}| </Text>
+                            : <Text key={index} style={styles.subTitleText}>{item[0].toUpperCase() + item.substring(1)}</Text>
+                        ))}
                     </View>
-                    <View style={{marginHorizontal:20, marginVertical:10}}>
-                        <Text style={{textAlign:'justify'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lectus eget metus blandit convallis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis maximus lorem id turpis fringilla rhoncus. Sed venenatis elit ac enim condimentum tempus. </Text>
-                    </View>
-                    <View style={styles.footerMovie}>
-                        <View style={styles.footerMovieContent}>
-                            <TouchableOpacity>
-                                <MaterialCommunityIcon name='message-outline'
-                                size={20} />
-                            </TouchableOpacity>
-                            <Text>count</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity>
-                                <MaterialCommunityIcon name='share-variant'
-                                size={20}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <Text style={styles.subTitleText}>{props.releaseYear}</Text>
                 </View>
             </View>
+
+            <View style={styles.middleContent}>
+                <Image source={{uri:props.posterPath}}
+                style={{width:100   , height: 150}}/>
+                <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <AntDesign name="star" size={18} color="gold" />
+                    <Text>{props.rating}/5</Text>
+                </View>
+            </View>
+                <Text style={{textAlign:'justify', marginVertical:10}}>{props.overview}</Text>
+            <MovieFooter modalShow={()=> props.modalShow()}/>
         </TouchableOpacity>
     )
 }
@@ -39,43 +39,32 @@ export default Movies
 
 const styles = StyleSheet.create({
     container : {
-        width: Dimensions.get('screen').width - 50,
-        alignSelf:'center',
-    },
-    
-    movieContainer : {
-        height:'75%',
-        paddingVertical:10
-    },
-    movieBox: {
-        width: Dimensions.get('screen').width - 50,
-        height:'110%',
+        width: Dimensions.get('screen').width -50,
         backgroundColor:'white',
-        alignItems:'center',
-        paddingVertical:'10%',
         borderRadius:20,
-        justifyContent:'space-between'
+        alignSelf:'center',
+        marginVertical:10,
+        paddingHorizontal: 20,
+        paddingVertical:20
+     }, 
+     topContent : {
+         width:'100%'
+     },
+     titleText : {
+         color:'black', 
+         textAlign:'left',
+         borderBottomWidth: 1,
+         fontWeight: 'bold',
+         fontSize: 20
     },
-    contentContainer : {
-        borderWidth:1,
-        borderColor:'black',
-        width: Dimensions.get('screen').width - 100,
-        height:100,
-        alignItems:'center',
-        justifyContent:'center'
+    subTitleText : {
+        color: 'black',
+        fontSize: 16
     },
-    footerMovie : {
-        borderTopWidth:1,
-        width: Dimensions.get('screen').width - 100,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        paddingVertical:10
-        
-    },
-    footerMovieContent: {
-        flexDirection:'row', 
-        justifyContent:'space-between', 
-        alignItems:'center',
-        width:50,
+    middleContent : {
+        width: '100%', 
+        flexDirection:"row", 
+        justifyContent:"space-around",
+        marginVertical: 20
     }
 })
