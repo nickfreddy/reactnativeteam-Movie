@@ -52,6 +52,8 @@ const HomePage = props => {
   const getMoreData = () => {
     dispatch({type: 'GET_MORE_MOVIE'})
   }
+ 
+  
 
   return (
     <View style={{backgroundColor: 'white'}}>
