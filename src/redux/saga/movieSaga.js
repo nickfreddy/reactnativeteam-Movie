@@ -1,6 +1,6 @@
 import { put, select } from "@redux-saga/core/effects";
 import axios from "axios";
-import { call, takeLatest } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
 
 function* dataMovies(action) {
     try {
@@ -24,7 +24,6 @@ function* dataMoviesDetails(action) {
     const movie_id = yield select(state => state.movie.movieId)
     try {
         const resDetailMovies = yield getDetails(movie_id)
-        // console.log(resDetailMovies)
         yield put({type:'GET_MOVIE_DETAILS_SUCCESS', dataDetails: resDetailMovies.data})
     } 
     catch (err) {
@@ -73,16 +72,13 @@ function* dataMovieSearch(action) {
 function* getMoreMovie(action) {
     const page = yield select(state => state.movie.pageCount)
     try {
-        console.log('mulai')
         console.log(`https://demovie.gabatch13.my.id/movies?page=${1 + page}&limit=5`)
         const resDataMovies = yield axios.get(`https://demovie.gabatch13.my.id/movies?page=${1 + page}&limit=5`)  
         yield put({type:'GET_MORE_MOVIE_SUCCESS', data: resDataMovies.data.dataMovie})
-        console.log('get success')
     }
     catch (err) {
         console.log(err)
         yield put({type:'GET_MORE_MOVIE_FAILED', })
-        console.log('get failed')
     }
 }
 

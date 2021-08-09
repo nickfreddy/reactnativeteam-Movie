@@ -1,17 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {View, FlatList, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import React, {useEffect} from 'react';
+import {View, FlatList, ActivityIndicator} from 'react-native';
 import AllReview from '../components/AllReview';
 import HeaderReview from '../components/HeaderReview';
-import NewModal from '../components/NewModal';
-import {connect, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 
 const AllReviewPage = props => {
   const dispatch = useDispatch();
   const AllRev_redux = useSelector(state => state.AllRev.AllRevData);
   const loading = useSelector(state => state.AllRev.isLoading)
-  // console.log('===>', AllRev_redux)
   const renderAllRev = ({item, index}) => {
     if (index !== 10) {
       return (
@@ -46,4 +43,4 @@ const AllReviewPage = props => {
 };
 
 export default AllReviewPage;
-//json-server --watch response.json --port 3000
+
