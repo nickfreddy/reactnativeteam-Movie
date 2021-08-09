@@ -10,6 +10,7 @@ const SearchBox = () => {
 
     const handleSearch = () => {
         dispatch({type: 'GET_MOVIE_BY_SEARCH', payload: input})
+        setInput('')
     }
     return (
         <View style={styles.searchBox}>

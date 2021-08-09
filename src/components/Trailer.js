@@ -15,7 +15,7 @@ const Trailer = (props) => {
             style={{width:300, height: 200 }}
             apiKey="AIzaSyC1v8DscUQX_FSsJAT22gRcYi0uSli_tjs"
             />
-    )
+    )   
 }
 
 export default Trailer

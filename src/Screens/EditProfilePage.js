@@ -50,7 +50,6 @@ const EditProfilePage = props => {
           name: source.fileName,
           type: source.type,  
         };
-        // dispatch({type: 'UPDATE_PHOTO', data: uploadImage});
       }
     });
   };
@@ -67,11 +66,6 @@ const EditProfilePage = props => {
       {type: 'UPDATE_PHOTO'},
     );
   };
-
-  // useEffect(() => {
-  //   dispatch({type: 'GET_UPDATE'});
-  //   dispatch({type: 'UPDATE_PHOTO'});
-  // }, [isLoading]);
 
   return (
     <View style={{flex: 1, backgroundColor: '#114E60'}}>
