@@ -3,6 +3,7 @@ const initialState = {
   isLoggedIn: false,
   loginMessage : null,
   registerMessage: null,
+  
 };
 
 const auth = (state = initialState, action) => {

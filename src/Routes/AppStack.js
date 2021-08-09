@@ -20,6 +20,8 @@ const AppStack = props => {
     const tempToken = await getToken();
     if (tempToken) {
       setToken(tempToken);
+      dispatch({type:'VERIFY_TOKEN'})
+      console.log(tempToken)
     } else {
       setToken(null)
     }
@@ -28,12 +30,12 @@ const AppStack = props => {
     setTimeout(() => {
       SplashScreen.hide();
     }, 3000);
-    await getToken();
-  }, [token]);
+    // await getToken();
+  }, []);
 
   return (
     <Stack.Navigator headerMode="none">
-      {props.verify || token ? (
+      {props.verify ? (
         <Stack.Screen name="MainNavigator" component={MainNavigator} />
         ) : (
         <Stack.Screen name="LoginStack" component={LoginStack} />

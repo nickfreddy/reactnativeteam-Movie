@@ -31,8 +31,8 @@ function* Login(action) {
 
 function* logout() {
   try {
-    yield call(removeToken);
-    yield call(removeUserId);
+    yield removeToken();
+    yield removeUserId();
     yield put({type:'LOG_OUT_SUCCESS'})
     console.log('telah logout');
   } catch (err) {
