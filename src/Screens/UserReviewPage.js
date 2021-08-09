@@ -91,6 +91,9 @@ const UserReviewPage = props => {
           borderWidth: 1,
           borderRadius: 8,
         }}>
+        <Text style={{marginTop: 5, marginLeft: 5, fontWeight: 'bold'}}>
+          Description:
+        </Text>
         <Text style={{margin: 5}}>{user_redux.description}</Text>
       </View>
       <NewModal
