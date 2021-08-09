@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { StyleSheet} from 'react-native'
 import YouTube from 'react-native-youtube'
 
 const Trailer = (props) => {
-    const [playing, setplaying] = useState(false)
-
-
     return (
             <YouTube 
             videoId= {props.path}

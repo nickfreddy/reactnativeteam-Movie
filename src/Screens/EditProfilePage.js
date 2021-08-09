@@ -1,15 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, Alert} from 'react-native';
+import React, {useState,} from 'react';
+import {View, Alert, ScrollView} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import TxtInput from '../components/TxtInput';
 import ProfilePic from '../components/ProfilePic';
-import Button from '../components/Button';
 import HeaderEdit from '../components/HeaderEdit';
-import {removeToken} from '../components/loginFunct';
 import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import DesInput from '../components/DesInput';
-import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
 const EditProfilePage = props => {
@@ -68,7 +65,8 @@ const EditProfilePage = props => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#114E60'}}>
+    
+    <View style={{height:'100%', backgroundColor: '#114E60'}}>
       <HeaderEdit
         onPress={() => {
           handleUpdate();
@@ -79,31 +77,33 @@ const EditProfilePage = props => {
             }},
           ]);
         }}
-      />
-      <View style={{top: 30, marginBottom: 30}}>
-        <ProfilePic onPress={() => handleUpload()} image={image} />
-        <View style={{left: 230, bottom: 20}}>
-          <AntDesign name="edit" size={25} color="gold" />
+        />
+        <ScrollView>
+        <View style={{top: 30, marginBottom: 30}}>
+          <ProfilePic onPress={() => handleUpload()} image={image} />
+          <View style={{left: 230, bottom: 20}}>
+            <AntDesign name="edit" size={25} color="gold" />
+          </View>
         </View>
-      </View>
-      <TxtInput
-        title="Username"
-        BGcolor="#114E60"
-        input={text => setUsername(text)}
-        value={username}
-      />
-      <TxtInput
-        title="Email"
-        BGcolor="#114E60"
-        input={text => setEmail(text)}
-        value={email}
-      />
-      <DesInput
-        title="description"
-        BGcolor="#114E60"
-        input={text => setDescription(text)}
-        value={description}
-      />
+        <TxtInput
+          title="Username"
+          BGcolor="#114E60"
+          input={text => setUsername(text)}
+          value={username}
+          />
+        <TxtInput
+          title="Email"
+          BGcolor="#114E60"
+          input={text => setEmail(text)}
+          value={email}
+          />
+        <DesInput
+          title="description"
+          BGcolor="#114E60"
+          input={text => setDescription(text)}
+          value={description}
+          />
+        </ScrollView>
     </View>
   );
 };

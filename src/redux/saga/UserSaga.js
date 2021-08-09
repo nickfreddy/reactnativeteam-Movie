@@ -5,15 +5,11 @@ import {getUserId, getHeaders} from '../../components/loginFunct';
 
 function* dataUsers(action) {
   try {
-    console.log('mulai get user');
     const resUserId = yield getUserId();
     const resdataUsers =
       yield axios.get(`https://demovie.gabatch13.my.id/users/${resUserId}
     `);
-    //console.log('++++>', resUserId);
-    // console.log('===>', resdataUsers.data);
     yield put({type: 'GET_USER_SUCCESS', data: resdataUsers.data});
-    console.log('selesai');
   } catch (err) {
     console.log(err);
   }
@@ -37,7 +33,6 @@ function* dataUsersDetails(action) {
 
 function* updateDataUser(action) {
   try {
-    // console.log('mulai update')
     const resUserId = yield getUserId();
     const headers = yield getHeaders();
     const resUpDetailUser = yield axios({
@@ -46,20 +41,17 @@ function* updateDataUser(action) {
       headers,
       data: action.dataPost,
     });
-    console.log('update sukses', resUpDetailUser.data);
     yield put({
       type: 'UPDATE_USER_SUCCESS',
       dataUpdateUser: resUpDetailUser.data,
     });
   } catch (err) {
     console.log(err);
-    // console.log('error selesai')
   }
 }
 
 function* updatePhotoUser(action) {
   try {
-    // console.log('mulai photo')
     const resUserId = yield getUserId();
     const headers = yield getHeaders();
     const data = new FormData();
@@ -74,14 +66,12 @@ function* updatePhotoUser(action) {
       headers,
       data: action.data,
     });
-    console.log('upload sukses', resUpPhotoUser.data);
     yield put({
       type: 'UPDATE_PHOTO_SUCCESS',
       dataUpdatePhoto: resUpPhotoUser.data,
     });
   } catch (err) {
     console.log(err);
-    // console.log('selesai error')
   }
 }
 

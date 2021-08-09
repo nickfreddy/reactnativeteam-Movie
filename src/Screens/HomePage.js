@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,ActivityIndicator, ScrollView} from 'react-native';
 
 import Genre from '../components/Genre';
 import Movies from '../components/Movies';
@@ -19,9 +19,6 @@ const HomePage = props => {
   const isLoadingMore = useSelector(state => state.movie.loadingMore)
   const [commentInput, setCommentInput] = useState('')
   const [rating, setRating] = useState(0)
-  // const movieIdModal = useSelector(state => state.review.movieIdModal)
-  // console.log('ini redux movie', movies_redux)
-  // console.log('==>', movieIdModal)
 
   useEffect(() => {
     dispatch({type: 'GET_DATA'})
@@ -55,6 +52,8 @@ const HomePage = props => {
   const getMoreData = () => {
     dispatch({type: 'GET_MORE_MOVIE'})
   }
+ 
+  
 
   return (
     <View style={{backgroundColor: 'white'}}>
