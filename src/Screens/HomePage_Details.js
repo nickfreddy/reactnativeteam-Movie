@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator, StyleSheet, Text, View, Dimensions, ScrollView, ImageBackground } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import MovieFooter from '../components/MovieFooter';
 import LinearGradient from 'react-native-linear-gradient'
 import Trailer from '../components/Trailer';
 

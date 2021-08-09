@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native'
+import { View,  TouchableOpacity, Dimensions, TextInput, StyleSheet } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useDispatch } from 'react-redux'
 
 const SearchBox = () => {
     const dispatch = useDispatch()
     const [input, setInput] = useState('')
-    console.log(input)
 
     const handleSearch = () => {
         dispatch({type: 'GET_MOVIE_BY_SEARCH', payload: input})

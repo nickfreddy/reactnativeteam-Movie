@@ -1,15 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, Alert, ScrollView} from 'react-native';
+import React, {useState,} from 'react';
+import {View, Alert, ScrollView} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import TxtInput from '../components/TxtInput';
 import ProfilePic from '../components/ProfilePic';
-import Button from '../components/Button';
 import HeaderEdit from '../components/HeaderEdit';
-import {removeToken} from '../components/loginFunct';
 import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import DesInput from '../components/DesInput';
-import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
 const EditProfilePage = props => {

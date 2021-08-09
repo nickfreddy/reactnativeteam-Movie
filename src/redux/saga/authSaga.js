@@ -17,15 +17,12 @@ function* Login(action) {
       url: 'https://demovie.gabatch13.my.id/auth/login',
       data: action.data,
     });
-    // console.log('+++++++>', resLogin.data);
     yield saveToken(resLogin.data.token);
     yield saveUserId(resLogin.data._id);
     yield put({type: 'LOGIN_SUCCESS'});
-    console.log('login sukses');
   } catch (err) {
     console.log(err);
     yield put({type: 'LOGIN_FAILED', message: err});
-    console.log('login gagal')
   }
 }
 
@@ -34,17 +31,14 @@ function* logout() {
     yield removeToken();
     yield removeUserId();
     yield put({type:'LOG_OUT_SUCCESS'})
-    console.log('telah logout');
   } catch (err) {
     console.log(err);
     yield put({type:'LOG_OUT_FAILED'})
-    console.log('logout fail')
   }
 }
 
 function* register(action) {
   try {
-    console.log('register running');
     const resLogin = yield axios({
       method: 'POST',
       url: 'https://demovie.gabatch13.my.id/auth/register',
@@ -53,11 +47,9 @@ function* register(action) {
     yield saveToken(resLogin.data.token);
     yield saveUserId(resLogin.data._id);
     yield put({type: 'REGISTER_SUCCESS'});
-    console.log('register sukses');
   } catch (err) {
     console.log('ini error', err.errors);
     yield put({type: 'REGISTER_FAILED', message: err});
-    console.log('register gagal')
   }
 }
 

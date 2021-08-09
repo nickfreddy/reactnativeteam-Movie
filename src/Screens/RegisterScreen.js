@@ -19,7 +19,6 @@ const RegisterScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const loading = useSelector(state => state.auth.isLoading);
-  // console.log('err dari register', errMessage)
   const handleRegister = () => {
     let newData = {
       username,
@@ -54,7 +53,7 @@ const RegisterScreen = props => {
           />
         </View>
         {!loading ? (
-          <Button title="Login" onPress={() => handleRegister()} />
+          <Button title="Submit" onPress={() => handleRegister()} />
         ) : (
           <ActivityIndicator color="orange" size="large" />
         )}
