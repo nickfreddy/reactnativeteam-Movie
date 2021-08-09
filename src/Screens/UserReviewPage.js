@@ -19,6 +19,7 @@ import NewModal from '../components/NewModal';
 const UserReviewPage = props => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.review.isLoading);
+  const isLoadingUser = useSelector(state => state.User.loading)
   const user_redux = useSelector(state => state.User.userData);
   const modalEdit_redux = useSelector(state => state.review.modalStateEdit);
   const [commentInput, setCommentInput] = useState('');
@@ -37,6 +38,7 @@ const UserReviewPage = props => {
       type: 'POST_DELETE',
       data: {reviewId: data._id, movieId: data.movie_id._id},
     });
+    dispatch({type: 'GET_USER'})
   };
 
   const handleReviewEdit = () => {
@@ -46,6 +48,7 @@ const UserReviewPage = props => {
     };
     dispatch({type: 'POST_EDIT', dataPost: newPost});
     setCommentInput('');
+    dispatch({type: 'GET_USER'})
     dispatch({type: 'CLOSE_MODAL_EDIT'});
   };
 
@@ -100,7 +103,7 @@ const UserReviewPage = props => {
         handleComment={() => handleReviewEdit()}
         onPressTrash={() => closeModal()}
       />
-      {isLoading ? (
+      {isLoadingUser ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (
         <FlatList

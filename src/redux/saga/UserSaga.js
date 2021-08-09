@@ -37,6 +37,7 @@ function* dataUsersDetails(action) {
 
 function* updateDataUser(action) {
   try {
+    // console.log('mulai update')
     const resUserId = yield getUserId();
     const headers = yield getHeaders();
     const resUpDetailUser = yield axios({
@@ -52,11 +53,13 @@ function* updateDataUser(action) {
     });
   } catch (err) {
     console.log(err);
+    // console.log('error selesai')
   }
 }
 
 function* updatePhotoUser(action) {
   try {
+    // console.log('mulai photo')
     const resUserId = yield getUserId();
     const headers = yield getHeaders();
     const data = new FormData();
@@ -78,13 +81,14 @@ function* updatePhotoUser(action) {
     });
   } catch (err) {
     console.log(err);
+    // console.log('selesai error')
   }
 }
 
 function* UserSaga() {
   yield takeLatest('GET_USER', dataUsers);
   yield takeLatest('GET_USER_DETAILS', dataUsersDetails);
-  yield takeLatest('GET_UPDATE', updateDataUser);
+  yield takeLatest('UPDATE_USER', updateDataUser);
   yield takeLatest('UPDATE_PHOTO', updatePhotoUser);
 }
 

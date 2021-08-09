@@ -5,10 +5,10 @@ import Genre from '../components/Genre';
 import Movies from '../components/Movies';
 import SearchBox from '../components/SearchBox';
 
-import {connect, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 import NewModal from '../components/NewModal';
-import {getToken} from '../components/loginFunct';
+
 
 const HomePage = props => {
   const dispatch = useDispatch();
@@ -27,7 +27,6 @@ const HomePage = props => {
     dispatch({type: 'GET_DATA'})
     dispatch({type: 'GET_USER'})
   }, [])
-  // modalLoading
   
   const handleComment = () => {
     let newPost = {
@@ -56,54 +55,6 @@ const HomePage = props => {
   const getMoreData = () => {
     dispatch({type: 'GET_MORE_MOVIE'})
   }
-  const renderItem = ({item, index}, data) => {
-    let pos = 0
-    // //basecase
-    // function baseCase(pos) {
-    //   if(pos > data.length) {
-    //     return (
-    //       <View><Text>MORE</Text></View>
-    //     )
-    //   } else {
-    //     return renderItem({item, index}, data, measure + 1)
-    //   }
-    // }
-
-    // const result = (item) => {
-    //   return (
-    //     <Movies
-    //       title={item.title}
-    //       genre={item.genres}
-    //       releaseYear={item.release_year}
-    //       overview={item.synopsis}
-    //       rating={item.averageRating === null ? "-" : item.averageRating}
-    //       posterPath={item.poster}
-    //       modalShow={() => openModal(item)}
-    //       onPress={() => navigateDetails(item)}
-    //     />
-    //   );
-    // }
-    
-    if(pos < data.length) {
-      pos = pos + 1
-      return (
-        <Movies
-          title={item.title}
-          genre={item.genres}
-          releaseYear={item.release_year}
-          overview={item.synopsis}
-          rating={item.averageRating === null ? "-" : item.averageRating}
-          posterPath={item.poster}
-          modalShow={() => openModal(item)}
-          onPress={() => navigateDetails(item)}
-        />
-      );
-    } else {
-      return(
-              <View><Text>MORE</Text></View>
-            )
-    }
-  };
 
   return (
     <View style={{backgroundColor: 'white'}}>
@@ -152,7 +103,7 @@ const HomePage = props => {
             };
           } else {
             return (
-              <View key={item.id}>
+              <View key={index}>
                 <Movies
                 title={item.title}
                 genre={item.genres}
@@ -167,11 +118,6 @@ const HomePage = props => {
               )
             };
             })
-            // <FlatList
-            // data={movies_redux}
-            // keyExtractor={(elem, i) => i}
-            // renderItem={renderItem(data)}
-            // />
           }
         </ScrollView>
         

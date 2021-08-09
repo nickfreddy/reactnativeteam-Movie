@@ -8,20 +8,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import TxtInput from '../components/TxtInput';
 import Button from '../components/Button';
 import PassInput from '../components/PassInput';
 import {connect, useSelector} from 'react-redux';
-import { color } from 'react-native-reanimated';
 
 const LoginScreen = props => {
-  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const loading = useSelector(state => state.auth.isLoading)
   const message = useSelector(state => state.auth.loginMessage)
-  // console.log(message)
   const handleLogin = () => {
     const newData = {
       email,
