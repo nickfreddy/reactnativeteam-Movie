@@ -112,6 +112,10 @@ const styles = StyleSheet.create({
         alignItems:'center',
         height: '10%'
     },
+    commentContainer : {
+        alignItems: 'center',
+        justifyContent:'center'
+    },
     
     
 })

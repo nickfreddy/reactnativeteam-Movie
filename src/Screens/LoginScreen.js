@@ -33,7 +33,7 @@ const LoginScreen = props => {
     <View style={styles.backgroundBase}>
       <Image source={require('../assets/LogoBlue.jpg')} style={styles.image} />
       <View style={styles.contentContainer}>
-        {(message !== null) ? <Text style={{color:'white'}}>Wrong email or password!</Text> : null}
+        {(message !== null) ? <Text style={{color:'red'}}>Wrong email or password!</Text> : null}
         <View style={styles.containerInput}>
           <TxtInput
             placeholder="Username"
@@ -51,7 +51,7 @@ const LoginScreen = props => {
           />
         </View>
         {(!loading) 
-        ? <Button title="Login" onPress={() => handleLogin()} />
+        ? <Button title="Sign In" onPress={() => handleLogin()} />
         : <ActivityIndicator color='orange' size='large'/> 
         }
         
@@ -64,7 +64,7 @@ const LoginScreen = props => {
           <Text style={{color: 'white'}}>Don't have an account?</Text>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('Register')}>
-            <Text style={{color: 'yellow'}}> SignUp!</Text>
+            <Text style={{color: 'yellow'}}> Register</Text>
           </TouchableOpacity>
         </View>
       </View>

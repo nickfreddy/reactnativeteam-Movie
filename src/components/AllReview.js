@@ -6,7 +6,7 @@ import {connect, useDispatch} from 'react-redux';
 const AllReview = props => {
   const dispatch = useDispatch();
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={() => props.onPress()}>
       <View
         style={{
           borderWidth: 1,

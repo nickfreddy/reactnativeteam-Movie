@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity,ActivityIndicator, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity,ActivityIndicator, ScrollView} from 'react-native';
 
 import Genre from '../components/Genre';
 import Movies from '../components/Movies';
@@ -23,6 +23,7 @@ const HomePage = props => {
   useEffect(() => {
     dispatch({type: 'GET_DATA'})
     dispatch({type: 'GET_USER'})
+    dispatch({type: 'GET_ALL_REV'})
   }, [])
   
   const handleComment = () => {
@@ -52,8 +53,6 @@ const HomePage = props => {
   const getMoreData = () => {
     dispatch({type: 'GET_MORE_MOVIE'})
   }
- 
-  
 
   return (
     <View style={{backgroundColor: 'white'}}>

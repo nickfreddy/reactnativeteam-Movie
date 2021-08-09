@@ -33,10 +33,7 @@ export default CommentCard
 const widthScreen = Dimensions.get('screen').width
 
 const styles = StyleSheet.create({
-    commentContainer : {
-        alignItems: 'center',
-        justifyContent:'center'
-    },
+
     commentCard : {
         width : widthScreen - (0.1 * widthScreen),
         height: 100,

@@ -17,6 +17,7 @@ function* postData(action) {
         yield put({
             type: 'POST_COMMENT_SUCCESS',
         });
+        yield put({type: 'GET_ALL_REV'})
     }
     catch(err) {
         console.log(err)

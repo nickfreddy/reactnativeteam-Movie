@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import GenreBox from './GenreBox'
 import { connect, useDispatch, useSelector } from 'react-redux'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 const Genre = (props) => {
     const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const Genre = (props) => {
             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                 <Text style={{...styles.text, fontSize:20}}>Best Genre</Text>
                 <TouchableOpacity onPress={() => resetHandler()}>
-                    <Text style={styles.text}>reset {'>>'}</Text>
+                    <EvilIcons name="refresh" size={30} color='white' />
                 </TouchableOpacity>
             </View>
             <View style={{flexDirection:'row'}}>

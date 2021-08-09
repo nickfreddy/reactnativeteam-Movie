@@ -23,13 +23,13 @@ const Movies = (props) => {
 
             <View style={styles.middleContent}>
                 <Image source={{uri:props.posterPath}}
-                style={{width:100   , height:150}}/>
+                style={{width:100   , height: 150}}/>
                 <View style={{justifyContent:'center', alignItems:'center'}}>
                     <AntDesign name="star" size={18} color="gold" />
                     <Text>{props.rating}/5</Text>
                 </View>
             </View>
-                <Text style={{textAlign:'justify'}}>{props.overview}</Text>
+                <Text style={{textAlign:'justify', marginVertical:10}}>{props.overview}</Text>
             <MovieFooter modalShow={()=> props.modalShow()}/>
         </TouchableOpacity>
     )
@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
         width: '100%', 
         flexDirection:"row", 
         justifyContent:"space-around",
-        marginVertical:10
+        marginVertical: 20
     }
 })

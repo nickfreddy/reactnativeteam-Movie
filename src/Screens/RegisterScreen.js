@@ -65,7 +65,7 @@ const RegisterScreen = props => {
           }}>
           <Text style={{color: 'white'}}>Already have an account?</Text>
           <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-            <Text style={{color: 'yellow'}}> Sign In!</Text>
+            <Text style={{color: 'yellow'}}> SignIn</Text>
           </TouchableOpacity>
         </View>
       </View>

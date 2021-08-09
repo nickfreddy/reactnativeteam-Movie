@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    backgroundColor: 'red',
+    backgroundColor: 'orange',
     width: 50,
     height: 50,
     padding: 10,

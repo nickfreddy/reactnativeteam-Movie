@@ -23,6 +23,7 @@ function* AllRevDataDetails(action) {
       type: 'GET_REVIEW_DETAILS_SUCCESS',
       dataReviewDetails: resDetailReview.data,
     });
+    console.log(resDetailReview.data);
   } catch (err) {
     console.log(err);
   }
